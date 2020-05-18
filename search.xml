@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Vue组件 路由动态</title>
+      <link href="/2020/051540520.html"/>
+      <url>/2020/051540520.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="1-「全局组件注册」"><a href="#1-「全局组件注册」" class="headerlink" title="1 -「全局组件注册」"></a>1 -「全局组件注册」</h3><p>组件是我们非常常用的东西，很多人使用组件都是通过一个一个文件去引用和注册。如果一个组件在整个项目里面的使用次数较多，每一次使用都需要引用并注册，就会显得特别麻烦</p><ul><li><p>一般组件应用弊端</p></li><li><p>傻瓜式，太笨拙</p></li><li><p>繁琐，低效</p><pre><code>&lt;template&gt;&lt;div&gt;  &lt;h1&gt;I am HelloWorld&lt;/h1&gt;  &lt;Child1&gt;&lt;/Child1&gt;&lt;/div&gt;&lt;/template&gt;&lt;script&gt;import Child1 from &#39;./child1.vue&#39;   // 引入export default {name: &#39;HelloWorld&#39;,data(){  return{  }},components:{   // 注册  Child1},props: {  msg: String},methods:{}}&lt;/script&gt;&lt;style scoped lang=&quot;less&quot;&gt;&lt;/style&gt;</code></pre></li></ul><p>当我们在项目需要重复多次使用该组件，会导致出现很多重复的引入和注册代码，既繁琐又不雅观。因此我们可以通过一个全局的Js文件来管理，将需要多次使用的组件进行全局注册</p><h5 id="创建全局-js文件管理全局组件"><a href="#创建全局-js文件管理全局组件" class="headerlink" title="创建全局.js文件管理全局组件"></a>创建全局.js文件管理全局组件</h5><p><img src="../img/158944481.png" alt=""></p><pre><code>// 1 - globalComponent.jsimport Vue from &#39;vue&#39; // 引入vue// 处理首字母大写 abc =&gt; Abcfunction changeStr(str){    return str.charAt(0).toUpperCase() + str.slice(1)}/*    require.context(arg1,arg2,arg3)        arg1 - 读取文件的路径        arg2 - 是否遍历文件的子目录        arg3 - 匹配文件的正则    关于这个Api的用法，建议小伙伴们去查阅一下，用途也比较广泛*/const requireComponent = require.context(&#39;.&#39;, false, /\.vue$/)console.log(&#39;requireComponent.keys():&#39;,requireComponent.keys())  // 打印requireComponent.keys().forEach(fileName =&gt; {    const config = requireComponent(fileName)    console.log(&#39;config:&#39;,config)  // 打印    const componentName = changeStr(        fileName.replace(/^\.\//, &#39;&#39;).replace(/\.\w+$/, &#39;&#39;)   // ./child1.vue =&gt; child1    )    Vue.component(componentName, config.default || config) // 动态注册该目录下的所有.vue文件})</code></pre><pre><code>    // 2 - 将globalComponent.js引入main.js    import global from &#39;./components/globalComponent&#39;</code></pre><pre><code>// 3 - 使用这类组件不再需要引入和注册，直接标签使用即可&lt;template&gt;&lt;div&gt;    &lt;h1&gt;I am HelloWorld&lt;/h1&gt;    &lt;Child1&gt;&lt;/Child1&gt;&lt;/div&gt;&lt;/template&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Javascript常用数组API</title>
+      <link href="/2020/05147550.html"/>
+      <url>/2020/05147550.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="JS-数组常用API方法和遍历方法总结"><a href="#JS-数组常用API方法和遍历方法总结" class="headerlink" title="JS 数组常用API方法和遍历方法总结"></a>JS 数组常用API方法和遍历方法总结</h2><h3 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h3><h5 id="数组-array"><a href="#数组-array" class="headerlink" title="数组 (array)"></a>数组 (array)</h5><p>map：遍历数组，返回回调返回值组成的新数组，不改变原数组，不会对空数组进行检测</p><pre><code>Array.map(function(item, index, array) {return xxx})</code></pre><p>forEach：无法break，可以用try/catch中throw new Error来停止，不改变原数组</p><pre><code>Array.forEach(function(item, index, array) {})</code></pre><p>filter：过滤，返回过滤后的数组，不改变原数组，不会对空数组进行检测</p><pre><code>Array.filter(function(item, index, array) {})const data = [-8, 9, 5, 3];const res = data.filter(function(item) {    if (item &gt; 3) {    return item    }});console.log(res); // [9, 5]</code></pre><p>some：有一项返回true，则整体为true，不改变原数组</p><pre><code>Array.some(function(item, index, array) {})</code></pre><p>every ：需要全部符合条件才返回true，有一项返回false，则整体为false，不改变原数组</p><pre><code>Array.every(function(item, index, array) {})</code></pre><p>join：返回通过指定连接符str把数组连接成字符串，不改变原数组</p><pre><code>Array.join(str)</code></pre><p>push / pop ：数组末尾推入push和弹出pop，返回改变后数组的长度/弹出项，改变原数组</p><pre><code>Array.push(item) ／ Array.pop(item)</code></pre><p>unshift / shift：数组头部推入unshift和弹出shift，返回改变后数组的长度/弹出项，改变原数组</p><pre><code>Array.unshift(item) ／ Array.shift(item)</code></pre><p>sort(fn) / reverse：按规则排序与反转，改变原数组</p><pre><code>Array.sort(fn) Array.reverse()</code></pre><p>splice：返回删除元素组成的数组，从start处开始删除number个值后插入valueN参数列表到数组中，改变原数组</p><pre><code>Array.splice(start, number, value1, value2...)</code></pre><p>concat：连接n（n &gt;= 2）个数组，返回数组连接后的数组副本，浅拷贝，不改变原数组</p><pre><code>Array.concat(Array)</code></pre><p>slice：返回截断后的新数组，不改变原数组</p><pre><code>Array.slice(start, end)</code></pre><p>indexOf / lastIndexOf(value, fromIndex)<br>indexOf 从fromIndex（默认为0）开始向后查找value<br>lastIndexOf 从fromIndex（默认为-1）开始向前查找value<br>返回value对应的下标</p><pre><code>Array.indexOf(value[, fromIndex])Array.lastIndexOf(value[, fromIndex])</code></pre><p>isArray * ：用于确定参数value是否是一个Array</p><pre><code>Array.isArray(value)</code></pre><h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><p>find *：返回符合条件的第一个数组元素item</p><pre><code>let item = Array.find(item=&gt;find==1)console.log(item) // 1</code></pre><p>findIndex *：返回符合条件的第一个数组元素的索引</p><pre><code>let index = Array.findIndex(item=&gt;find==1)console.log(index) // 0</code></pre><p>from *：将类似数组的对象和可遍历（iterable）的对象转为真正的数组</p><pre><code>Array.fill(value[, start, end])const set = new Set(3, 8, 9, 0)Array.from(set)</code></pre><p>数组</p><pre><code>const arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];for(let v of arr.entries()) {    console.log(v)}// [0, &#39;a&#39;] [1, &#39;b&#39;] [2, &#39;c&#39;]</code></pre><p>Set</p><pre><code>const arr1 = new Set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);for(let v of arr1.entries()) {    console.log(v)}// [&#39;a&#39;, &#39;a&#39;] [&#39;b&#39;, &#39;b&#39;] [&#39;c&#39;, &#39;c&#39;]</code></pre><p>Map</p><pre><code>const arr2 = new Map();arr2.set(&#39;a&#39;, &#39;a&#39;);arr2.set(&#39;b&#39;, &#39;b&#39;);for(let v of arr2.entries()) {    console.log(v)}// [&#39;a&#39;, &#39;a&#39;] [&#39;b&#39;, &#39;b&#39;]</code></pre><p>keys *：返回迭代器：返回键key（即上面的每个数组中的第一个值）</p><pre><code>Array.keys()</code></pre><p>values：返回迭代器：返回值value（即上面的每个数组中的第二个值）</p><pre><code>Array.values()</code></pre><p>includes *：用于从fromIndex判断数组中是否包含val，可替代ES5中的 indexOf</p><pre><code>Array.includes(val[, fromIndex])</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Javascript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nginx部署项目</title>
+      <link href="/2020/051418076.html"/>
+      <url>/2020/051418076.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="window-or-linux-Nginx部署项目"><a href="#window-or-linux-Nginx部署项目" class="headerlink" title="window or linux   Nginx部署项目"></a>window or linux   Nginx部署项目</h2><h3 id="window"><a href="#window" class="headerlink" title="window"></a>window</h3><p>一、下载<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">Nginx</a>,下载好解压至桌面，或者D盘，C盘实际看自己喜好<br><img src="../img/1589424481.png" alt=""></p><p>下载双击就可以看到站点搭建好了<br><img src="../img/1589426261.png" alt=""></p><p>二、部署  在<code>\nginx-1.18.0\html\</code>目录下新建项目文件夹<code>xiaohong</code>,注：我这里取名xiaohong 也可以去其他名字<br><img src="../img/1589426782.png" alt=""></p><p>打开<code>xiaohong</code>这个文件夹把前端打包好的文件（dist）全部放到此目录下<br><img src="../img/1589427034.png" alt=""></p><p>三、配置<code>\nginx-1.18.0\conf\目录下的nginx.conf ，location / 下root</code>修改为 <code>html/xiaohong</code>重启就可以访问了</p><pre><code>    重启  nginx -s reload</code></pre><p>nginx.conf配置文件</p><pre><code>        #user  nobody;        worker_processes  1;        #error_log  logs/error.log;        #error_log  logs/error.log  notice;        #error_log  logs/error.log  info;        #pid        logs/nginx.pid;        events {            worker_connections  1024;        }        http {            include       mime.types;            default_type  application/octet-stream;            #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;            #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;            #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;            #access_log  logs/access.log  main;            sendfile        on;            #tcp_nopush     on;            #keepalive_timeout  0;            keepalive_timeout  65;            server {                listen       80;                server_name  localhost;                location / {                    root   html/xiaohong;   #文件目录                    autoindex on;                     index  index.html index.htm;                }                #error_page  404              /404.html;                error_page   500 502 503 504  /50x.html;                location = /50x.html {                    root   html;                }            }        }</code></pre><p>地址栏：<a href="http://127.0.0.1" target="_blank" rel="noopener">http://127.0.0.1</a><br><img src="../img/1589427689.png" alt=""></p><h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><p>一、下载安装 Nginx</p><pre><code>wget http://nginx.org/download/nginx-1.17.10.tar.gz</code></pre><p>解压</p><pre><code>tar -xvzf nginx-1.14.0.tar.gz</code></pre><p>进入安装包目录：</p><pre><code>cd nginx-1.14.0</code></pre><p>编译安装：</p><pre><code>./configure --prefix=/usr/local/share/applications/nginx-1.14.0/ --with-http_ssl_modulemake &amp;&amp; make install</code></pre><p>如果此处 报 cannot open object file 需做个路径映射</p><pre><code>ln -s nginx /usr/nginx</code></pre><p>先查看安装路径然后启动 启动Ngnix ,每个服务器安装位置可能有差异安装自行查看</p><pre><code># 查看安装路径 whereis nginx# 验证nginx配置文件  /usr/local/nginx-1.14.0/sbin/nginx -t# 启动   nginx /usr/local/nginx-1.14.0/sbin/nginx  # 关闭   /usr/local/nginx-1.14.0/sbin/nginx -s stop# 重启   /usr/local/nginx-1.14.0/sbin/nginx -s reload</code></pre><p><strong>注: nginx.conf 文件配置和window一致！！！</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网站部署 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vs code 前端插件推荐 </title>
+      <link href="/2020/05113800.html"/>
+      <url>/2020/05113800.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="Document-This"><a href="#Document-This" class="headerlink" title="Document This"></a>Document This</h3><p><img src="https://img-blog.csdnimg.cn/20191111232947447.png" alt="js代码规范注释"></p><h3 id="Bracket-Pair-Colorizer"><a href="#Bracket-Pair-Colorizer" class="headerlink" title="Bracket Pair Colorizer"></a>Bracket Pair Colorizer</h3><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvMTMwOTg5Ny8yMDE4MDMvMTMwOTg5Ny0yMDE4MDMxODIzMTIxMjQyNi05Mjk5ODI0My5wbmc?x-oss-process=image/format,png" alt="给括号加上不同的颜色，便于区分不同的区块，使用者可以定义不同括号类型和不同颜色"></p><h3 id="Beautify"><a href="#Beautify" class="headerlink" title="Beautify"></a>Beautify</h3><p><img src="http://www.tenwang.com/ueditor/php/upload/image/20190615/1560608441248568.png" alt="格式化代码，值得注意的是，beautify插件支持自定义格式化代码规则"></p><h3 id="HTML-Snippets"><a href="#HTML-Snippets" class="headerlink" title="HTML Snippets"></a>HTML Snippets</h3><p><img src="https://image-static.segmentfault.com/162/560/1625604254-57bc7582e3a60_articlex" alt="超级实用且初级的 H5代码片段以及提示"></p><!-- 动图 --><h3 id="Auto-Close-Tag"><a href="#Auto-Close-Tag" class="headerlink" title="Auto Close Tag"></a>Auto Close Tag</h3><p><img src="https://blog-1257878287.cos.ap-chengdu.myqcloud.com/15092830970499.gif" alt="自动添加HTML / XML关闭标签（必备）"></p><h3 id="Path-Intellisense"><a href="#Path-Intellisense" class="headerlink" title="Path Intellisense"></a>Path Intellisense</h3><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jYW1vLmdpdGh1YnVzZXJjb250ZW50LmNvbS81YjZmMmExZTY4MDc4YmVkYTBlZDRlMmE0Y2QwMjc3YjJhZTlkZGI1LzY4NzQ3NDcwM2EyZjJmNjkyZTY3Njk3MDY4NzkyZTYzNmY2ZDJmNjk2MTQ4NjU1NTY5NDQ2NTU0NTU1YTc1NmYyZTY3Njk2Ng?x-oss-process=image/format,png" alt="VisualStudio代码插件，自动完成文件名"></p><h3 id="Auto-Rename-Tag"><a href="#Auto-Rename-Tag" class="headerlink" title="Auto Rename Tag"></a>Auto Rename Tag</h3><p><img src="https://blog-1257878287.cos.ap-chengdu.myqcloud.com/15092838452118.gif" alt="自动重命名配对的HTML / XML标签(必备)"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vs code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue基础知识</title>
+      <link href="/2020/05105171.html"/>
+      <url>/2020/05105171.html</url>
+      
+        <content type="html"><![CDATA[<h4 id="1-vue的虚拟dom？"><a href="#1-vue的虚拟dom？" class="headerlink" title="1.vue的虚拟dom？"></a>1.vue的虚拟dom？</h4><p>虚拟的DOM的核心思想是：对复杂的文档<code>DOM</code>结构，提供一种方便的工具，进行最小化地<code>DOM</code>操作。</p><h4 id="2-如何理解vue中MVVM模式？"><a href="#2-如何理解vue中MVVM模式？" class="headerlink" title="2.如何理解vue中MVVM模式？"></a>2.如何理解vue中MVVM模式？</h4><p><code>MVVM</code>全称是<code>Model-View-ViewModel</code>；vue是以数据为驱动的，一旦创建dom和数据就保持同步，<br>每当数据发生变化时，dom也会变化。<code>DOMListeners</code>和<code>DataBindings</code>是实现双向绑定的关键。<br><code>DOMListeners</code>监听页面所有<code>View</code>层<code>DOM</code>元素的变化，当发生变化，<code>Model</code>层的数据随之变化；<br><code>DataBindings</code>监听<code>Model</code>层的数据，当数据发生变化，<code>View</code>层的<code>DOM</code>元素随之变化。</p><h4 id="3-vue中-lt-keep-alive-gt-的作用？"><a href="#3-vue中-lt-keep-alive-gt-的作用？" class="headerlink" title="3.vue中&lt;keep-alive&gt;的作用？"></a>3.vue中<code>&lt;keep-alive&gt;</code>的作用？</h4><p>把切换出去的组件保留在缓存中，可以保留组件的状态或者避免重新渲染。</p><h4 id="4-vue生命周期的理解？"><a href="#4-vue生命周期的理解？" class="headerlink" title="4.vue生命周期的理解？"></a>4.vue生命周期的理解？</h4><p><code>beforeCreate</code>是new Vue()之后触发的第一个钩子，在当前阶段data、methods、computed以及watch上的数据和方法都不能被访问。</p><p><code>created</code>在实例创建完成后发生，当前阶段已经完成了数据观测，也就是可以使用数据，更改数据，在这里更改数据不会触发updated函数。可以做一些初始数据的获取，在当前阶段无法与Dom进行交互，如果非要想，可以通过vm.$nextTick来访问Dom。</p><p><code>beforeMount</code>发生在挂载之前，在这之前template模板已导入渲染函数编译。而当前阶段虚拟Dom已经创建完成，即将开始渲染。在此时也可以对数据进行更改，不会触发updated。</p><p><code>mounted</code>在挂载完成后发生，在当前阶段，真实的Dom挂载完毕，数据完成双向绑定，可以访问到Dom节点，使用$refs属性对Dom进行操作。</p><p><code>beforeUpdate</code>发生在更新之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，你可以在当前阶段进行更改数据，不会造成重渲染。</p><p><code>updated</code>发生在更新完成之后，当前阶段组件Dom已完成更新。要注意的是避免在此期间更改数据，因为这可能会导致无限循环的更新。</p><p><code>beforeDestroy</code>发生在实例销毁之前，在当前阶段实例完全可以被使用，我们可以在这时进行善后收尾工作，比如清除计时器。</p><p><code>destroyed</code>发生在实例销毁之后，这个时候只剩下了dom空壳。组件已被拆解，数据绑定被卸除，监听被移出，子实例也统统被销毁。</p><h4 id="5-组件之间的传值通信？"><a href="#5-组件之间的传值通信？" class="headerlink" title="5.组件之间的传值通信？"></a>5.组件之间的传值通信？</h4><p>父组件向子组件传值：<br>1、子组件在<code>props</code>中创建一个属性，用来接收父组件传过来的值；<br>2、在父组件中注册子组件；<br>3、在子组件标签中添加子组件props中创建的属性；<br>4、把需要传给子组件的值赋给该属性<br>子组件向父组件传值：<br>1、子组件中需要以某种方式（如点击事件）的方法来触发一个自定义的事件；<br>2、将需要传的值作为<code>$emit</code>的第二个参数，该值将作为实参传给响应事件的方法；<br>3、在父组件中注册子组件并在子组件标签上绑定自定义事件的监听。</p><h4 id="6-vue的优点是什么？"><a href="#6-vue的优点是什么？" class="headerlink" title="6.vue的优点是什么？"></a>6.vue的优点是什么？</h4><p>低耦合：视图（<code>View</code>）可以独立于Model变化和修改，一个<code>ViewModel</code>可以绑定到不同的”<code>View</code>“上，当<code>View</code>变化的时候<code>Model</code>可以不变，当<code>Model</code>变化的时候<code>View</code>也可以不变。<br>可重用性：你可以把一些视图逻辑放在一个<code>ViewMode</code>l里面，让很多<code>view</code>重用这段视图逻辑。<br>独立开发：开发人员可以专注于业务逻辑和数据的开发（<code>ViewModel</code>），设计人员可以专注于页面设计。<br>可测试：界面素来是比较难于测试的，而现在测试可以针对<code>ViewModel</code>来写。</p><h4 id="7-v-show和v-if指令的共同点和不同点"><a href="#7-v-show和v-if指令的共同点和不同点" class="headerlink" title="7.v-show和v-if指令的共同点和不同点"></a>7.v-show和v-if指令的共同点和不同点</h4><p><code>v-show</code>指令是通过修改元素的<code>display</code>的<code>CSS</code>属性让其显示或者隐藏<br><code>v-if</code>指令是直接销毁和重建<code>DOM</code>达到让元素显示和隐藏的效果</p><h4 id="8-如何让CSS只在当前组件中起作用"><a href="#8-如何让CSS只在当前组件中起作用" class="headerlink" title="8.如何让CSS只在当前组件中起作用"></a>8.如何让CSS只在当前组件中起作用</h4><p>将当前组件的 <code>&lt;style&gt;修改为&lt;style scoped&gt;</code></p><h4 id="9-lt-keep-alive-gt-lt-keep-alive-gt-的作用是什么"><a href="#9-lt-keep-alive-gt-lt-keep-alive-gt-的作用是什么" class="headerlink" title="9.&lt;keep-alive&gt;&lt;/keep-alive&gt;的作用是什么?"></a>9.<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>的作用是什么?</h4><p><code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code><br>包裹动态组件时，会缓存不活动的组件实例，主要用于保留组件状态或避免重新渲染。</p><h4 id="10-指令v-el的作用是什么"><a href="#10-指令v-el的作用是什么" class="headerlink" title="10.指令v-el的作用是什么?"></a>10.指令v-el的作用是什么?</h4><p>提供一个在页面上已存在的 <code>DOM</code> 元素作为 <code>Vue</code> 实例的挂载目标.可以是 <code>CSS</code> 选择器，也可以是一个 <code>HTMLElement</code> 实例</p><h4 id="11-在Vue中使用插件的步骤"><a href="#11-在Vue中使用插件的步骤" class="headerlink" title="11.在Vue中使用插件的步骤"></a>11.在Vue中使用插件的步骤</h4><p>采用<code>ES6</code>的<code>import ... from ...</code>语法或<code>CommonJSd的require()</code>方法引入插件<br>使用全局方法<code>Vue.use( plugin )</code>使用插件,可以传入一个选项对象<code>Vue.use(MyPlugin, { someOption: true })</code></p><h4 id="12-active-class是哪个组件的属性？"><a href="#12-active-class是哪个组件的属性？" class="headerlink" title="12.active-class是哪个组件的属性？"></a>12.active-class是哪个组件的属性？</h4><p><code>vue-router</code>模块的<code>router-link</code>组件。</p><h4 id="13-怎么定义vue-router的动态路由以及如何获取传过来的动态参数？"><a href="#13-怎么定义vue-router的动态路由以及如何获取传过来的动态参数？" class="headerlink" title="13.怎么定义vue-router的动态路由以及如何获取传过来的动态参数？"></a>13.怎么定义vue-router的动态路由以及如何获取传过来的动态参数？</h4><p>在<code>router</code>目录下的<code>index.js</code>文件中，对<code>path</code>属性加上<code>/:id</code><br>使用<code>router</code>对象的<code>params.id</code></p><h4 id="14-vue-router有哪几种导航钩子？"><a href="#14-vue-router有哪几种导航钩子？" class="headerlink" title="14.vue-router有哪几种导航钩子？"></a>14.vue-router有哪几种导航钩子？</h4><p>第一种：一种是全局导航钩子：<code>router.beforeEach(to,from,next)</code>，作用：跳转前进行判断拦截。<br>第二种：组件内的钩子；<br>第三种：单独路由独享组件</p><h4 id="15-为什么避免-v-if-和-v-for-用在一起"><a href="#15-为什么避免-v-if-和-v-for-用在一起" class="headerlink" title="15.为什么避免 v-if 和 v-for 用在一起"></a>15.为什么避免 v-if 和 v-for 用在一起</h4><p>当 Vue 处理指令时，<code>v-for</code> 比 <code>v-if</code> 具有更高的优先级，通过<code>v-if</code> 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 <code>v-if</code> 为否的时候运算 <code>v-for</code></p><h4 id="16-VNode是什么？虚拟-DOM是什么？"><a href="#16-VNode是什么？虚拟-DOM是什么？" class="headerlink" title="16.VNode是什么？虚拟 DOM是什么？"></a>16.VNode是什么？虚拟 DOM是什么？</h4><p>Vue在 页面上渲染的节点，及其子节点称为“虚拟节点 (<code>Virtual Node</code>)”，简写为“VNode”。“虚拟 DOM”是由 Vue 组件树建立起来的整个 <code>VNode</code> 树的称呼。</p><h4 id="17-为什么使用key？"><a href="#17-为什么使用key？" class="headerlink" title="17.为什么使用key？"></a>17.为什么使用key？</h4><p>当有相同标签名的元素切换时，需要通过 key 特性设置唯一的值来标记以让 Vue 区分它们，否则 Vue 为了效率只会替换相同标签内部的内容。</p><h4 id="18-vue-loader是什么？使用它的用途有哪些？"><a href="#18-vue-loader是什么？使用它的用途有哪些？" class="headerlink" title="18.vue-loader是什么？使用它的用途有哪些？"></a>18.vue-loader是什么？使用它的用途有哪些？</h4><p><code>vue-loader</code>是解析.vue文件的一个加载器。<br>用途：<code>j</code>s可以写<code>es6、styl</code>e样式可以<code>scss或less、template</code>可以加<code>jade</code>等</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux服务器环境搭建ftp</title>
+      <link href="/2020/050942639.html"/>
+      <url>/2020/050942639.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="搭建-linux-服务器环境搭建ftp"><a href="#搭建-linux-服务器环境搭建ftp" class="headerlink" title="搭建 linux 服务器环境搭建ftp"></a>搭建 linux 服务器环境搭建ftp</h2><h4 id="登陆远程-linux-服务器"><a href="#登陆远程-linux-服务器" class="headerlink" title="登陆远程 linux 服务器"></a>登陆远程 linux 服务器</h4><p> <code>ssh root@ip地址</code></p><h4 id="使用yum安装vsftpd"><a href="#使用yum安装vsftpd" class="headerlink" title="使用yum安装vsftpd"></a>使用yum安装vsftpd</h4><pre><code>$ yum install -y vsftpd</code></pre><h4 id="安装后-启动FTP服务："><a href="#安装后-启动FTP服务：" class="headerlink" title="安装后,启动FTP服务："></a>安装后,启动FTP服务：</h4><pre><code>$ service vsftpd start</code></pre><h4 id="启动后-查看系统监听的端口："><a href="#启动后-查看系统监听的端口：" class="headerlink" title="启动后,查看系统监听的端口："></a>启动后,查看系统监听的端口：</h4><pre><code>$ netstat -nltp | grep 21</code></pre><h4 id="配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改："><a href="#配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改：" class="headerlink" title="配置ftp权限, 编辑 /etc/vsftpd/vsftpd.conf, 找到下面两处位置并修改："></a>配置ftp权限, 编辑 <code>/etc/vsftpd/vsftpd.conf</code>, 找到下面两处位置并修改：</h4><p>作用：<br>禁用匿名用户 12 <code>YES</code> 改为 <code>NO</code><br>禁止切换目录 101 行 删除 <strong>#</strong></p><p><code>anonymous_enable=NO</code><br><code>chroot_local_user=YES</code></p><h4 id="重启ftp服务"><a href="#重启ftp服务" class="headerlink" title="重启ftp服务"></a>重启ftp服务</h4><pre><code>$ service vsftpd restart </code></pre><p>创建ftp 用户 <code>web</code>, 为web用户创建密码<code>123456</code></p><pre><code>$ useradd web$ echo &quot;123456&quot; | passwd --stdin</code></pre><p><code>创建web用户并创建密码</code><br><code>创建web用户并创建密码</code></p><h4 id="限制用户仅能通过-FTP-访问"><a href="#限制用户仅能通过-FTP-访问" class="headerlink" title="限制用户仅能通过 FTP 访问"></a>限制用户仅能通过 FTP 访问</h4><p>限制用户 ftpuser只能通过 FTP 访问服务器，而不能直接登录服务器：</p><pre><code>$ usermod -s /sbin/nologin web</code></pre><h4 id="为用户分配主目录"><a href="#为用户分配主目录" class="headerlink" title="为用户分配主目录"></a>为用户分配主目录</h4><p><code>/data/ftp</code> 为主目录, 该目录不可上传文件<br><code>/data/ftp/pub</code> 文件只能上传到该目录下</p><pre><code>$ mkdir -p /data/ftp/pub</code></pre><p>设置访问权限</p><pre><code>$ chmod a-w /data/ftp &amp;&amp; chmod 777 -R /data/ftp/pub</code></pre><h4 id="设置为用户的主目录："><a href="#设置为用户的主目录：" class="headerlink" title="设置为用户的主目录："></a>设置为用户的主目录：</h4><pre><code>$ usermod -d /data/ftp web</code></pre><h4 id="开放ftp-21端口-或者-关闭防火墙"><a href="#开放ftp-21端口-或者-关闭防火墙" class="headerlink" title="开放ftp 21端口 或者 关闭防火墙"></a>开放<code>ftp 21</code>端口 或者 关闭防火墙</h4><p>关闭<code>SELinux</code>服务<br><code>setenforce 0</code><br>关闭防火墙<br><code>iptables -F</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Ftp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo+github搭建博客</title>
+      <link href="/2020/050759243.html"/>
+      <url>/2020/050759243.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><p>0.注册/登录一个GitHub账户，建立一个公开的仓库并且仓库名一定要是：<code>用户名.github.io</code></p><p>1.下载node并配置好环境变量（我的第一个坑就是node没有配置环境变量）安装直接一直下一步即可</p><p>2.下载git配置好环境变量（如果不太了解可以看一下廖雪峰的教程）</p><h2 id="二、搭建过程"><a href="#二、搭建过程" class="headerlink" title="二、搭建过程"></a>二、搭建过程</h2><h2 id="为git配置信息"><a href="#为git配置信息" class="headerlink" title="为git配置信息"></a>为git配置信息</h2><p><code>window+r</code>打开<code>cmd</code>打开终端配置git信息输入如下信息：</p><pre><code>$ git config -g user.name &quot;你的github用户名&quot;$ git config -g user.emil &quot;你注册github的邮箱&quot;</code></pre><h2 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h2><p>在终端输入如下命令：</p><p><code>ssh -keygen -t rda -C &quot;你注册github的邮箱&quot;</code><br>之后不管内容三个回车即可</p><h2 id="复制密钥并且粘贴到github"><a href="#复制密钥并且粘贴到github" class="headerlink" title="复制密钥并且粘贴到github"></a>复制密钥并且粘贴到github</h2><p>上面的密钥会生成到c盘的用户文件夹里面，如果找不到就在c盘搜索i<code>d_rsa.hub</code>，然后打开把里面的内容都复制下来，登录到你的github点击右上角你头像，会出现一个下拉菜单找到<code>setting</code>，选择<code>SSH and GPG keys</code>,点击<code>new ssh key</code>，然后只需要把你复制的密钥粘贴上去即可，名字随意取。</p><p>此时可以来测试一下你的密钥是否配置成功 输入如下命令：</p><p><code>ssh -T git@github.com</code><br>选择yes，如果看到…successfull..那就是成功了</p><h2 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h2><p>hexo是一个集成的博客框架，可以快速根据主题生成静态网页</p><p>此时我们可以选择盘符新建一个空文件夹名为为blog，鼠标右键选择<code>git bach here</code> 安装hexo在里面执行如下语句：</p><pre><code>$ npm i -g hexo-cil</code></pre><p>这里时间可能会久一点，因为是在外网下载，如果时间太久或者下载失败的话可以用淘宝的镜像下载 如下</p><pre><code>$ npm i -g cnpm --registry=https:registry.npm.taobao.org$ cnpm i -g hexo-cil$ cnpm i hexo --save</code></pre><p>如果下载安装好了可以用hexo -v来查看如果看到版本信息就算安装成功如hexo-cil:4.1.0</p><h2 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h2><pre><code>$ hexo init</code></pre><p>然后进入blog文件夹 如果你看到有source themes和_config.yml等文件夹就说明你操作成功</p><h2 id="在本地服务器上查看"><a href="#在本地服务器上查看" class="headerlink" title="在本地服务器上查看"></a>在本地服务器上查看</h2><pre><code>$ hexo s</code></pre><p>接着打开浏览去器输入<code>locahost:4000</code>，就可以查看了，实际上这时候你的博客已经搭建成功了</p><p>嗯快一定的话网速好一点的话（最好是在科学上网的情况下）确实是十分钟，但是后面完善特别是我这种追求主题美观（花里胡哨）的人并且喜欢魔改主题又费了老大劲了，也是踩坑无数，主题魔改可单独一篇讲。</p><h2 id="三、发布文章"><a href="#三、发布文章" class="headerlink" title="三、发布文章"></a>三、发布文章</h2><p>发布一篇文章可以用命令<br>    $ hexo new  &lt;标题&gt;<br>但是强烈推荐里用Typora软件直接写拖到soruce的_posts文件夹里，这个文件夹是专门放你的博客文章的，但是只是放进去在网上还是不能看到你的文章，用命令生成网页在这之前最好先清理缓存</p><pre><code>$ hexo clean$ hexo g</code></pre><p>你可以先预览一下</p><pre><code>$ hexo s</code></pre><p>和之前一样在浏览器上输入<code>locahost:4000</code>就可以看到你的文章</p><p>现在只是在本地能看到想要传到网上首先你需要在之前创建的<code>blog</code>文件夹里面找到<code>_config.yml</code>这个站点配置文件</p><p>打开滑倒最下面找到deploy下面的<code>type</code>后面写上git （注意type和git之间一点要有空格）</p><p>然后就可以部署到github上去，输入如下命令</p><pre><code> $ hexo d</code></pre><h2 id="四、主题配置"><a href="#四、主题配置" class="headerlink" title="四、主题配置"></a>四、主题配置</h2><p>你可能对默认的主题很不满意，你可以去<a href="">hexo的主题库</a>去挑选，下载的话建议直接点进github克隆主题仓库下载快一点，下载好之后将文件解压把文件发在theme这个文件夹里，然后点进根目录也就是刚才的<strong><code>blog</code></strong>文件下的站点配置文件–config.yml里找到theme  在后面修改为你刚刚下载的主题文件夹名（也要注意theme和主题名之间的空格）</p><p>还有我的博客是主题目前是<code>matery</code> 想看可以点<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">这里</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
