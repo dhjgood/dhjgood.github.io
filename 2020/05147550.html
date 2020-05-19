@@ -29,7 +29,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-19
                 </div>
                 
 
@@ -478,7 +478,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="JS-数组常用API方法和遍历方法总结"><a href="#JS-数组常用API方法和遍历方法总结" class="headerlink" title="JS 数组常用API方法和遍历方法总结"></a>JS 数组常用API方法和遍历方法总结</h2><h3 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h3><h5 id="数组-array"><a href="#数组-array" class="headerlink" title="数组 (array)"></a>数组 (array)</h5><p>map：遍历数组，返回回调返回值组成的新数组，不改变原数组，不会对空数组进行检测</p>
-<pre><code>Array.map(function(item, index, array) {return xxx})</code></pre><p>forEach：无法break，可以用try/catch中throw new Error来停止，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">    Array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> xxx<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>forEach：无法break，可以用try/catch中throw new Error来停止，不改变原数组</p>
 <pre><code>Array.forEach(function(item, index, array) {})</code></pre><p>filter：过滤，返回过滤后的数组，不改变原数组，不会对空数组进行检测</p>
 <pre><code>Array.filter(function(item, index, array) {})
 

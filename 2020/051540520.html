@@ -29,7 +29,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -448,21 +448,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    485
+                    442
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -484,73 +484,76 @@
 <li><p>傻瓜式，太笨拙</p>
 </li>
 <li><p>繁琐，低效</p>
-<pre><code>&lt;template&gt;
-&lt;div&gt;
-  &lt;h1&gt;I am HelloWorld&lt;/h1&gt;
-  &lt;Child1&gt;&lt;/Child1&gt;
-&lt;/div&gt;
-&lt;/template&gt;
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>I am HelloWorld<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Child1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Child1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
 
-&lt;script&gt;
-import Child1 from &#39;./child1.vue&#39;   // 引入
-export default {
-name: &#39;HelloWorld&#39;,
-data(){
-  return{
-  }
-},
-components:{   // 注册
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">import</span> Child1 <span class="token keyword">from</span> <span class="token string">'./child1.vue'</span>   <span class="token comment" spellcheck="true">// 引入</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+name<span class="token punctuation">:</span> <span class="token string">'HelloWorld'</span><span class="token punctuation">,</span>
+<span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span><span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+components<span class="token punctuation">:</span><span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">// 注册</span>
   Child1
-},
-props: {
-  msg: String
-},
-methods:{
-}
-}
-&lt;/script&gt;
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  msg<span class="token punctuation">:</span> String
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+methods<span class="token punctuation">:</span><span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 
-&lt;style scoped lang=&quot;less&quot;&gt;
-&lt;/style&gt;</code></pre></li>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>less<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style language-css">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+</li>
 </ul>
 <p>当我们在项目需要重复多次使用该组件，会导致出现很多重复的引入和注册代码，既繁琐又不雅观。因此我们可以通过一个全局的Js文件来管理，将需要多次使用的组件进行全局注册</p>
 <h5 id="创建全局-js文件管理全局组件"><a href="#创建全局-js文件管理全局组件" class="headerlink" title="创建全局.js文件管理全局组件"></a>创建全局.js文件管理全局组件</h5><p><img src="../img/158944481.png" alt=""></p>
-<pre><code>// 1 - globalComponent.js
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 1 - globalComponent.js</span>
 
-import Vue from &#39;vue&#39; // 引入vue
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token comment" spellcheck="true">// 引入vue</span>
 
-// 处理首字母大写 abc =&gt; Abc
-function changeStr(str){
-    return str.charAt(0).toUpperCase() + str.slice(1)
-}
+<span class="token comment" spellcheck="true">// 处理首字母大写 abc => Abc</span>
+<span class="token keyword">function</span> <span class="token function">changeStr</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-/*
+<span class="token comment" spellcheck="true">/*
     require.context(arg1,arg2,arg3)
         arg1 - 读取文件的路径
         arg2 - 是否遍历文件的子目录
         arg3 - 匹配文件的正则
     关于这个Api的用法，建议小伙伴们去查阅一下，用途也比较广泛
-*/
-const requireComponent = require.context(&#39;.&#39;, false, /\.vue$/)
-console.log(&#39;requireComponent.keys():&#39;,requireComponent.keys())  // 打印
-requireComponent.keys().forEach(fileName =&gt; {
-    const config = requireComponent(fileName)
-    console.log(&#39;config:&#39;,config)  // 打印
-    const componentName = changeStr(
-        fileName.replace(/^\.\//, &#39;&#39;).replace(/\.\w+$/, &#39;&#39;)   // ./child1.vue =&gt; child1
-    )
+*/</span>
+<span class="token keyword">const</span> requireComponent <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token regex">/\.vue$/</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'requireComponent.keys():'</span><span class="token punctuation">,</span>requireComponent<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 打印</span>
+requireComponent<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>fileName <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token function">requireComponent</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'config:'</span><span class="token punctuation">,</span>config<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 打印</span>
+    <span class="token keyword">const</span> componentName <span class="token operator">=</span> <span class="token function">changeStr</span><span class="token punctuation">(</span>
+        fileName<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/^\.\//</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\.\w+$/</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// ./child1.vue => child1</span>
+    <span class="token punctuation">)</span>
 
-    Vue.component(componentName, config.default || config) // 动态注册该目录下的所有.vue文件
-})</code></pre><pre><code>    // 2 - 将globalComponent.js引入main.js
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span>componentName<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token keyword">default</span> <span class="token operator">||</span> config<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 动态注册该目录下的所有.vue文件</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-js"><code class="language-js">    <span class="token comment" spellcheck="true">// 2 - 将globalComponent.js引入main.js</span>
+    <span class="token keyword">import</span> global <span class="token keyword">from</span> <span class="token string">'./components/globalComponent'</span></code></pre>
+<pre class=" language-html"><code class="language-html">// 3 - 使用这类组件不再需要引入和注册，直接标签使用即可
 
-    import global from &#39;./components/globalComponent&#39;</code></pre><pre><code>// 3 - 使用这类组件不再需要引入和注册，直接标签使用即可
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>I am HelloWorld<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Child1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Child1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
 
-&lt;template&gt;
-&lt;div&gt;
-    &lt;h1&gt;I am HelloWorld&lt;/h1&gt;
-    &lt;Child1&gt;&lt;/Child1&gt;
-&lt;/div&gt;
-&lt;/template&gt;</code></pre>
             </div>
             <hr/>
 
@@ -882,7 +885,7 @@ requireComponent.keys().forEach(fileName =&gt; {
                     <div class="summary block-with-text">
                         
                             JS 数组常用API方法和遍历方法总结ES5数组 (array)map：遍历数组，返回回调返回值组成的新数组，不改变原数组，不会对空数组进行检测
-Array.map(function(item, index, array) {return 
+    Array.map(function(item, index, array) {ret
                         
                     </div>
                     <div class="publish-info">
