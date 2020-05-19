@@ -37,11 +37,13 @@
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
+                <div>
                 <a href="/" class="waves-effect waves-light">
                     
                     <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">Xiao&#39;Hong</span>
+                </div>
                 </a>
             </div>
             
@@ -515,7 +517,7 @@ methods<span class="token punctuation">:</span><span class="token punctuation">{
 </li>
 </ul>
 <p>当我们在项目需要重复多次使用该组件，会导致出现很多重复的引入和注册代码，既繁琐又不雅观。因此我们可以通过一个全局的Js文件来管理，将需要多次使用的组件进行全局注册</p>
-<h5 id="创建全局-js文件管理全局组件"><a href="#创建全局-js文件管理全局组件" class="headerlink" title="创建全局.js文件管理全局组件"></a>创建全局.js文件管理全局组件</h5><p><img src="../img/158944481.png" alt=""></p>
+<h5 id="创建全局-js文件管理全局组件"><a href="#创建全局-js文件管理全局组件" class="headerlink" title="创建全局.js文件管理全局组件"></a>创建全局.js文件管理全局组件</h5><p><img src="/medias/loading.gif" data-original="../img/158944481.png" alt=""></p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 1 - globalComponent.js</span>
 
 <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token comment" spellcheck="true">// 引入vue</span>
@@ -1285,6 +1287,11 @@ $(function () {
     <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/instantpage/instantpage.js" type="module"></script>
     
 
-</body>
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var i=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 
 </html>
