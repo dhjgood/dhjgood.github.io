@@ -454,14 +454,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    295
+                    278
                 </div>
                 
 
@@ -484,16 +484,30 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="搭建-linux-服务器环境搭建ftp"><a href="#搭建-linux-服务器环境搭建ftp" class="headerlink" title="搭建 linux 服务器环境搭建ftp"></a>搭建 linux 服务器环境搭建ftp</h2><h4 id="登陆远程-linux-服务器"><a href="#登陆远程-linux-服务器" class="headerlink" title="登陆远程 linux 服务器"></a>登陆远程 linux 服务器</h4><p> <code>ssh root@ip地址</code></p>
-<h4 id="使用yum安装vsftpd"><a href="#使用yum安装vsftpd" class="headerlink" title="使用yum安装vsftpd"></a>使用yum安装vsftpd</h4><pre><code>$ yum install -y vsftpd</code></pre><h4 id="安装后-启动FTP服务："><a href="#安装后-启动FTP服务：" class="headerlink" title="安装后,启动FTP服务："></a>安装后,启动FTP服务：</h4><pre><code>$ service vsftpd start</code></pre><h4 id="启动后-查看系统监听的端口："><a href="#启动后-查看系统监听的端口：" class="headerlink" title="启动后,查看系统监听的端口："></a>启动后,查看系统监听的端口：</h4><pre><code>$ netstat -nltp | grep 21</code></pre><h4 id="配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改："><a href="#配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改：" class="headerlink" title="配置ftp权限, 编辑 /etc/vsftpd/vsftpd.conf, 找到下面两处位置并修改："></a>配置ftp权限, 编辑 <code>/etc/vsftpd/vsftpd.conf</code>, 找到下面两处位置并修改：</h4><p>作用：<br>禁用匿名用户 12 <code>YES</code> 改为 <code>NO</code><br>禁止切换目录 101 行 删除 <strong>#</strong></p>
+<h4 id="使用yum安装vsftpd"><a href="#使用yum安装vsftpd" class="headerlink" title="使用yum安装vsftpd"></a>使用yum安装vsftpd</h4><pre class=" language-bash"><code class="language-bash">$ yum <span class="token function">install</span> -y vsftpd</code></pre>
+<h4 id="安装后-启动FTP服务："><a href="#安装后-启动FTP服务：" class="headerlink" title="安装后,启动FTP服务："></a>安装后,启动FTP服务：</h4><pre class=" language-bash"><code class="language-bash">$ <span class="token function">service</span> vsftpd start</code></pre>
+<h4 id="启动后-查看系统监听的端口："><a href="#启动后-查看系统监听的端口：" class="headerlink" title="启动后,查看系统监听的端口："></a>启动后,查看系统监听的端口：</h4><pre class=" language-bash"><code class="language-bash">$ <span class="token function">netstat</span> -nltp <span class="token operator">|</span> <span class="token function">grep</span> 21</code></pre>
+<h4 id="配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改："><a href="#配置ftp权限-编辑-etc-vsftpd-vsftpd-conf-找到下面两处位置并修改：" class="headerlink" title="配置ftp权限, 编辑 /etc/vsftpd/vsftpd.conf, 找到下面两处位置并修改："></a>配置ftp权限, 编辑 <code>/etc/vsftpd/vsftpd.conf</code>, 找到下面两处位置并修改：</h4><p>作用：<br>禁用匿名用户 12 <code>YES</code> 改为 <code>NO</code><br>禁止切换目录 101 行 删除 <strong>#</strong></p>
 <p><code>anonymous_enable=NO</code><br><code>chroot_local_user=YES</code></p>
-<h4 id="重启ftp服务"><a href="#重启ftp服务" class="headerlink" title="重启ftp服务"></a>重启ftp服务</h4><pre><code>$ service vsftpd restart </code></pre><p>创建ftp 用户 <code>web</code>, 为web用户创建密码<code>123456</code></p>
-<pre><code>$ useradd web
-$ echo &quot;123456&quot; | passwd --stdin</code></pre><p><code>创建web用户并创建密码</code><br><code>创建web用户并创建密码</code></p>
-<h4 id="限制用户仅能通过-FTP-访问"><a href="#限制用户仅能通过-FTP-访问" class="headerlink" title="限制用户仅能通过 FTP 访问"></a>限制用户仅能通过 FTP 访问</h4><p>限制用户 ftpuser只能通过 FTP 访问服务器，而不能直接登录服务器：</p>
-<pre><code>$ usermod -s /sbin/nologin web
-</code></pre><h4 id="为用户分配主目录"><a href="#为用户分配主目录" class="headerlink" title="为用户分配主目录"></a>为用户分配主目录</h4><p><code>/data/ftp</code> 为主目录, 该目录不可上传文件<br><code>/data/ftp/pub</code> 文件只能上传到该目录下</p>
-<pre><code>$ mkdir -p /data/ftp/pub</code></pre><p>设置访问权限</p>
-<pre><code>$ chmod a-w /data/ftp &amp;&amp; chmod 777 -R /data/ftp/pub</code></pre><h4 id="设置为用户的主目录："><a href="#设置为用户的主目录：" class="headerlink" title="设置为用户的主目录："></a>设置为用户的主目录：</h4><pre><code>$ usermod -d /data/ftp web</code></pre><h4 id="开放ftp-21端口-或者-关闭防火墙"><a href="#开放ftp-21端口-或者-关闭防火墙" class="headerlink" title="开放ftp 21端口 或者 关闭防火墙"></a>开放<code>ftp 21</code>端口 或者 关闭防火墙</h4><p>关闭<code>SELinux</code>服务<br><code>setenforce 0</code><br>关闭防火墙<br><code>iptables -F</code></p>
+<h4 id="重启ftp服务"><a href="#重启ftp服务" class="headerlink" title="重启ftp服务"></a>重启ftp服务</h4><pre class=" language-bash"><code class="language-bash">$ <span class="token function">service</span> vsftpd restart 
+
+创建ftp 用户 <span class="token variable"><span class="token variable">`</span>web <span class="token variable">`</span></span>, 为web用户创建密码<span class="token variable"><span class="token variable">`</span>123456<span class="token variable">`</span></span>
+
+$ <span class="token function">useradd</span> web
+
+$ <span class="token keyword">echo</span> <span class="token string">"123456"</span> <span class="token operator">|</span> <span class="token function">passwd</span> --stdin
+
+<span class="token comment" spellcheck="true">#### 限制用户仅能通过 FTP 访问</span>
+限制用户 ftpuser只能通过 FTP 访问服务器，而不能直接登录服务器：
+
+$ <span class="token function">usermod</span> -s /sbin/nologin web
+</code></pre>
+<h4 id="为用户分配主目录"><a href="#为用户分配主目录" class="headerlink" title="为用户分配主目录"></a>为用户分配主目录</h4><p><code>/data/ftp</code> 为主目录, 该目录不可上传文件<br><code>/data/ftp/pub</code> 文件只能上传到该目录下</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> -p /data/ftp/pub</code></pre>
+<p>设置访问权限</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">chmod</span> a-w /data/ftp <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> 777 -R /data/ftp/pub</code></pre>
+<h4 id="设置为用户的主目录："><a href="#设置为用户的主目录：" class="headerlink" title="设置为用户的主目录："></a>设置为用户的主目录：</h4><pre class=" language-bash"><code class="language-bash">$ <span class="token function">usermod</span> -d /data/ftp web</code></pre>
+<h4 id="开放ftp-21端口-或者-关闭防火墙"><a href="#开放ftp-21端口-或者-关闭防火墙" class="headerlink" title="开放ftp 21端口 或者 关闭防火墙"></a>开放<code>ftp 21</code>端口 或者 关闭防火墙</h4><p>关闭<code>SELinux</code>服务<br><code>setenforce 0</code><br>关闭防火墙<br><code>iptables -F</code></p>
 
             </div>
             <hr/>
@@ -1096,7 +1110,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.7k</span>&nbsp;字
+                class="white-color">4.6k</span>&nbsp;字
             
             
             

@@ -457,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    776
+                    729
                 </div>
                 
 
@@ -480,61 +480,87 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="JS-数组常用API方法和遍历方法总结"><a href="#JS-数组常用API方法和遍历方法总结" class="headerlink" title="JS 数组常用API方法和遍历方法总结"></a>JS 数组常用API方法和遍历方法总结</h2><h3 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h3><h5 id="数组-array"><a href="#数组-array" class="headerlink" title="数组 (array)"></a>数组 (array)</h5><p>map：遍历数组，返回回调返回值组成的新数组，不改变原数组，不会对空数组进行检测</p>
-<pre class=" language-js"><code class="language-js">    Array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> xxx<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> xxx<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>forEach：无法break，可以用try/catch中throw new Error来停止，不改变原数组</p>
-<pre><code>Array.forEach(function(item, index, array) {})</code></pre><p>filter：过滤，返回过滤后的数组，不改变原数组，不会对空数组进行检测</p>
-<pre><code>Array.filter(function(item, index, array) {})
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>filter：过滤，返回过滤后的数组，不改变原数组，不会对空数组进行检测</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-const data = [-8, 9, 5, 3];
-const res = data.filter(function(item) {
-    if (item &gt; 3) {
-    return item
-    }
-});
-console.log(res); // [9, 5]</code></pre><p>some：有一项返回true，则整体为true，不改变原数组</p>
-<pre><code>Array.some(function(item, index, array) {})</code></pre><p>every ：需要全部符合条件才返回true，有一项返回false，则整体为false，不改变原数组</p>
-<pre><code>Array.every(function(item, index, array) {})</code></pre><p>join：返回通过指定连接符str把数组连接成字符串，不改变原数组</p>
-<pre><code>Array.join(str)</code></pre><p>push / pop ：数组末尾推入push和弹出pop，返回改变后数组的长度/弹出项，改变原数组</p>
-<pre><code>Array.push(item) ／ Array.pop(item)</code></pre><p>unshift / shift：数组头部推入unshift和弹出shift，返回改变后数组的长度/弹出项，改变原数组</p>
-<pre><code>Array.unshift(item) ／ Array.shift(item)</code></pre><p>sort(fn) / reverse：按规则排序与反转，改变原数组</p>
-<pre><code>Array.sort(fn) Array.reverse()</code></pre><p>splice：返回删除元素组成的数组，从start处开始删除number个值后插入valueN参数列表到数组中，改变原数组</p>
-<pre><code>Array.splice(start, number, value1, value2...)</code></pre><p>concat：连接n（n &gt;= 2）个数组，返回数组连接后的数组副本，浅拷贝，不改变原数组</p>
-<pre><code>Array.concat(Array)</code></pre><p>slice：返回截断后的新数组，不改变原数组</p>
-<pre><code>Array.slice(start, end)</code></pre><p>indexOf / lastIndexOf(value, fromIndex)<br>indexOf 从fromIndex（默认为0）开始向后查找value<br>lastIndexOf 从fromIndex（默认为-1）开始向前查找value<br>返回value对应的下标</p>
-<pre><code>Array.indexOf(value[, fromIndex])
-Array.lastIndexOf(value[, fromIndex])</code></pre><p>isArray * ：用于确定参数value是否是一个Array</p>
-<pre><code>Array.isArray(value)</code></pre><h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><p>find *：返回符合条件的第一个数组元素item</p>
-<pre><code>let item = Array.find(item=&gt;find==1)
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>item <span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> item
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [9, 5]</span></code></pre>
+<p>some：有一项返回true，则整体为true，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>every ：需要全部符合条件才返回true，有一项返回false，则整体为false，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">every</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>join：返回通过指定连接符str把数组连接成字符串，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span></code></pre>
+<p>push / pop ：数组末尾推入push和弹出pop，返回改变后数组的长度/弹出项，改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> ／ Array<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span></code></pre>
+<p>unshift / shift：数组头部推入unshift和弹出shift，返回改变后数组的长度/弹出项，改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> ／ Array<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span></code></pre>
+<p>sort(fn) / reverse：按规则排序与反转，改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span> Array<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>splice：返回删除元素组成的数组，从start处开始删除number个值后插入valueN参数列表到数组中，改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> number<span class="token punctuation">,</span> value1<span class="token punctuation">,</span> value2<span class="token operator">...</span><span class="token punctuation">)</span></code></pre>
+<p>concat：连接n（n &gt;= 2）个数组，返回数组连接后的数组副本，浅拷贝，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>Array<span class="token punctuation">)</span></code></pre>
+<p>slice：返回截断后的新数组，不改变原数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">)</span></code></pre>
+<p>indexOf / lastIndexOf(value, fromIndex)<br>indexOf 从fromIndex（默认为0）开始向后查找value<br>lastIndexOf 从fromIndex（默认为-1）开始向前查找value<br>返回value对应的下标</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>value<span class="token punctuation">[</span><span class="token punctuation">,</span> fromIndex<span class="token punctuation">]</span><span class="token punctuation">)</span>
+Array<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span>value<span class="token punctuation">[</span><span class="token punctuation">,</span> fromIndex<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p>isArray * ：用于确定参数value是否是一个Array</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span></code></pre>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><p>find *：返回符合条件的第一个数组元素item</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> item <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>item<span class="token operator">=</span><span class="token operator">></span>find<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-console.log(item) // 1</code></pre><p>findIndex *：返回符合条件的第一个数组元素的索引</p>
-<pre><code>let index = Array.findIndex(item=&gt;find==1)
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1</span></code></pre>
+<p>findIndex *：返回符合条件的第一个数组元素的索引</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> index <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span>item<span class="token operator">=</span><span class="token operator">></span>find<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-console.log(index) // 0</code></pre><p>from *：将类似数组的对象和可遍历（iterable）的对象转为真正的数组</p>
-<pre><code>Array.fill(value[, start, end])
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 0</span></code></pre>
+<p>from *：将类似数组的对象和可遍历（iterable）的对象转为真正的数组</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span>value<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-const set = new Set(3, 8, 9, 0)
+<span class="token keyword">const</span> <span class="token keyword">set</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
 
-Array.from(set)</code></pre><p>数组</p>
-<pre><code>const arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
-for(let v of arr.entries()) {
-    console.log(v)
-}
-// [0, &#39;a&#39;] [1, &#39;b&#39;] [2, &#39;c&#39;]</code></pre><p>Set</p>
-<pre><code>const arr1 = new Set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);
-for(let v of arr1.entries()) {
-    console.log(v)
-}
-// [&#39;a&#39;, &#39;a&#39;] [&#39;b&#39;, &#39;b&#39;] [&#39;c&#39;, &#39;c&#39;]</code></pre><p>Map</p>
-<pre><code>const arr2 = new Map();
-arr2.set(&#39;a&#39;, &#39;a&#39;);
-arr2.set(&#39;b&#39;, &#39;b&#39;);
-for(let v of arr2.entries()) {
-    console.log(v)
-}
-// [&#39;a&#39;, &#39;a&#39;] [&#39;b&#39;, &#39;b&#39;]</code></pre><p>keys *：返回迭代器：返回键key（即上面的每个数组中的第一个值）</p>
-<pre><code>Array.keys()</code></pre><p>values：返回迭代器：返回值value（即上面的每个数组中的第二个值）</p>
-<pre><code>Array.values()</code></pre><p>includes *：用于从fromIndex判断数组中是否包含val，可替代ES5中的 indexOf</p>
-<pre><code>Array.includes(val[, fromIndex])</code></pre>
+Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token keyword">set</span><span class="token punctuation">)</span></code></pre>
+<p>数组</p>
+<pre class=" language-js"><code class="language-js">    <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> v <span class="token keyword">of</span> arr<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// [0, 'a'] [1, 'b'] [2, 'c']</span>
+
+Set
+
+    <span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> v <span class="token keyword">of</span> arr1<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// ['a', 'a'] ['b', 'b'] ['c', 'c']</span>
+
+Map
+
+    <span class="token keyword">const</span> arr2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    arr2<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    arr2<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> v <span class="token keyword">of</span> arr2<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// ['a', 'a'] ['b', 'b']</span></code></pre>
+<p>keys *：返回迭代器：返回键key（即上面的每个数组中的第一个值）</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>values：返回迭代器：返回值value（即上面的每个数组中的第二个值）</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>includes *：用于从fromIndex判断数组中是否包含val，可替代ES5中的 indexOf</p>
+<pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>val<span class="token punctuation">[</span><span class="token punctuation">,</span> fromIndex<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+
             </div>
             <hr/>
 
@@ -1134,7 +1160,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.7k</span>&nbsp;字
+                class="white-color">4.6k</span>&nbsp;字
             
             
             

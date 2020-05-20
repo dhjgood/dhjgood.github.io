@@ -454,14 +454,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-19
+                    2020-05-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    451
+                    435
                 </div>
                 
 
@@ -488,77 +488,85 @@
 <p>二、部署  在<code>\nginx-1.18.0\html\</code>目录下新建项目文件夹<code>xiaohong</code>,注：我这里取名xiaohong 也可以去其他名字<br><img src="/medias/loading.gif" data-original="../img/1589426782.png" alt=""></p>
 <p>打开<code>xiaohong</code>这个文件夹把前端打包好的文件（dist）全部放到此目录下<br><img src="/medias/loading.gif" data-original="../img/1589427034.png" alt=""></p>
 <p>三、配置<code>\nginx-1.18.0\conf\目录下的nginx.conf ，location / 下root</code>修改为 <code>html/xiaohong</code>重启就可以访问了</p>
-<pre class=" language-bash"><code class="language-bash">重启  nginx -s reload</code></pre>
-<p>nginx.conf配置文件</p>
-<pre><code>        #user  nobody;
-        worker_processes  1;
+<pre class=" language-bash"><code class="language-bash">nginx -s reload</code></pre>
+<pre class=" language-conf"><code class="language-conf">nginx.conf配置文件
 
-        #error_log  logs/error.log;
-        #error_log  logs/error.log  notice;
-        #error_log  logs/error.log  info;
+            #user  nobody;
+            worker_processes  1;
 
-        #pid        logs/nginx.pid;
+            #error_log  logs/error.log;
+            #error_log  logs/error.log  notice;
+            #error_log  logs/error.log  info;
 
-        events {
-            worker_connections  1024;
-        }
+            #pid        logs/nginx.pid;
 
-        http {
-            include       mime.types;
-            default_type  application/octet-stream;
-
-            #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
-            #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
-            #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;
-
-            #access_log  logs/access.log  main;
-
-            sendfile        on;
-            #tcp_nopush     on;
-
-            #keepalive_timeout  0;
-            keepalive_timeout  65;
-
-
-
-            server {
-                listen       80;
-                server_name  localhost;
-
-
-                location / {
-                    root   html/xiaohong;   #文件目录
-                    autoindex on; 
-                    index  index.html index.htm;
-                }
-
-                #error_page  404              /404.html;
-                error_page   500 502 503 504  /50x.html;
-                location = /50x.html {
-                    root   html;
-                }
-
+            events {
+                worker_connections  1024;
             }
 
+            http {
+                include       mime.types;
+                default_type  application/octet-stream;
+
+                #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                #                  '$status $body_bytes_sent "$http_referer" '
+                #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+                #access_log  logs/access.log  main;
+
+                sendfile        on;
+                #tcp_nopush     on;
+
+                #keepalive_timeout  0;
+                keepalive_timeout  65;
 
 
-        }</code></pre><p>地址栏：<a href="http://127.0.0.1" target="_blank" rel="noopener">http://127.0.0.1</a><br><img src="/medias/loading.gif" data-original="../img/1589427689.png" alt=""></p>
+
+                server {
+                    listen       80;
+                    server_name  localhost;
+
+
+                    location / {
+                        root   html/xiaohong;   #文件目录
+                        autoindex on; 
+                        index  index.html index.htm;
+                    }
+
+                    #error_page  404              /404.html;
+                    error_page   500 502 503 504  /50x.html;
+                    location = /50x.html {
+                        root   html;
+                    }
+
+                }
+
+
+
+            }</code></pre>
+<p>地址栏：<a href="http://127.0.0.1" target="_blank" rel="noopener">http://127.0.0.1</a><br><img src="/medias/loading.gif" data-original="../img/1589427689.png" alt=""></p>
 <h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><p>一、下载安装 Nginx</p>
-<pre><code>wget http://nginx.org/download/nginx-1.17.10.tar.gz</code></pre><p>解压</p>
-<pre><code>tar -xvzf nginx-1.14.0.tar.gz</code></pre><p>进入安装包目录：</p>
-<pre><code>cd nginx-1.14.0</code></pre><p>编译安装：</p>
-<pre><code>./configure --prefix=/usr/local/share/applications/nginx-1.14.0/ --with-http_ssl_module
-make &amp;&amp; make install</code></pre><p>如果此处 报 cannot open object file 需做个路径映射</p>
-<pre><code>ln -s nginx /usr/nginx</code></pre><p>先查看安装路径然后启动 启动Ngnix ,每个服务器安装位置可能有差异安装自行查看</p>
-<pre><code># 查看安装路径 whereis nginx
+<pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> http://nginx.org/download/nginx-1.17.10.tar.gz</code></pre>
+<p>解压</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">tar</span> -xvzf nginx-1.14.0.tar.gz</code></pre>
+<p>进入安装包目录：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> nginx-1.14.0</code></pre>
+<p>编译安装：</p>
+<pre class=" language-bash"><code class="language-bash">./configure --prefix<span class="token operator">=</span>/usr/local/share/applications/nginx-1.14.0/ --with-http_ssl_module
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span></code></pre>
+<p>如果此处 报 cannot open object file 需做个路径映射</p>
+<pre class=" language-bash"><code class="language-bash">    <span class="token function">ln</span> -s nginx /usr/nginx</code></pre>
+<p>先查看安装路径然后启动 启动Ngnix ,每个服务器安装位置可能有差异安装自行查看</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">whereis</span> nginx <span class="token comment" spellcheck="true">#查看安装路径</span>
 
-# 验证nginx配置文件  /usr/local/nginx-1.14.0/sbin/nginx -t
+/usr/local/nginx-1.14.0/sbin/nginx -t <span class="token comment" spellcheck="true">#验证nginx配置文件</span>
 
-# 启动   nginx /usr/local/nginx-1.14.0/sbin/nginx  
+nginx /usr/local/nginx-1.14.0/sbin/nginx <span class="token comment" spellcheck="true">#启动</span>
 
-# 关闭   /usr/local/nginx-1.14.0/sbin/nginx -s stop
+/usr/local/nginx-1.14.0/sbin/nginx -s stop <span class="token comment" spellcheck="true">#关闭</span>
 
-# 重启   /usr/local/nginx-1.14.0/sbin/nginx -s reload</code></pre><p><strong>注: nginx.conf 文件配置和window一致！！！</strong></p>
+/usr/local/nginx-1.14.0/sbin/nginx -s reload  <span class="token comment" spellcheck="true">#重启</span></code></pre>
+<p><strong>注: nginx.conf 文件配置和window一致！！！</strong></p>
 
             </div>
             <hr/>
@@ -837,7 +845,7 @@ make &amp;&amp; make install</code></pre><p>如果此处 报 cannot open object 
                     <div class="summary block-with-text">
                         
                             JS 数组常用API方法和遍历方法总结ES5数组 (array)map：遍历数组，返回回调返回值组成的新数组，不改变原数组，不会对空数组进行检测
-    Array.map(function(item, index, array) {ret
+Array.map(function(item, index, array) {return 
                         
                     </div>
                     <div class="publish-info">
@@ -1161,7 +1169,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.7k</span>&nbsp;字
+                class="white-color">4.6k</span>&nbsp;字
             
             
             
