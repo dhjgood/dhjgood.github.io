@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-20
                 </div>
                 
 
@@ -491,8 +491,10 @@
 <p>1.下载node并配置好环境变量（我的第一个坑就是node没有配置环境变量）安装直接一直下一步即可</p>
 <p>2.下载git配置好环境变量（如果不太了解可以看一下廖雪峰的教程）</p>
 <h2 id="二、搭建过程"><a href="#二、搭建过程" class="headerlink" title="二、搭建过程"></a>二、搭建过程</h2><h2 id="为git配置信息"><a href="#为git配置信息" class="headerlink" title="为git配置信息"></a>为git配置信息</h2><p><code>window+r</code>打开<code>cmd</code>打开终端配置git信息输入如下信息：</p>
-<pre><code>$ git config -g user.name &quot;你的github用户名&quot;
-$ git config -g user.emil &quot;你注册github的邮箱&quot;</code></pre><h2 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h2><p>在终端输入如下命令：</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config -g user.name <span class="token string">"你的github用户名"</span>
+
+$ <span class="token function">git</span> config -g user.emil <span class="token string">"你注册github的邮箱"</span></code></pre>
+<h2 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h2><p>在终端输入如下命令：</p>
 <p><code>ssh -keygen -t rda -C &quot;你注册github的邮箱&quot;</code><br>之后不管内容三个回车即可</p>
 <h2 id="复制密钥并且粘贴到github"><a href="#复制密钥并且粘贴到github" class="headerlink" title="复制密钥并且粘贴到github"></a>复制密钥并且粘贴到github</h2><p>上面的密钥会生成到c盘的用户文件夹里面，如果找不到就在c盘搜索i<code>d_rsa.hub</code>，然后打开把里面的内容都复制下来，登录到你的github点击右上角你头像，会出现一个下拉菜单找到<code>setting</code>，选择<code>SSH and GPG keys</code>,点击<code>new ssh key</code>，然后只需要把你复制的密钥粘贴上去即可，名字随意取。</p>
 <p>此时可以来测试一下你的密钥是否配置成功 输入如下命令：</p>
@@ -1125,7 +1127,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.6k</span>&nbsp;字
+                class="white-color">4.9k</span>&nbsp;字
             
             
             
