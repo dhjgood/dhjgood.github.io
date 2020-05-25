@@ -352,8 +352,8 @@
     // new Date().getDay()
     // 每天切换 banner 图.  Switch banner image every day.
         // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/1.jpg)');
-        $('.bg-cover').css('background-image', 'url(/medias/banner/2.jpg)'); 
-
+        // $('.bg-cover').css('background-image', 'url(/medias/banner/3.jpg)'); 
+        $('.bg-cover').css('background-image', 'url(/medias/banner/'+randomNum(4)+'.jpg)'); 
     </script>
 
 
@@ -591,7 +591,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Web前端","value":3},{"name":"Linux","value":1},{"name":"博客","value":1},{"name":"开发工具","value":1},{"name":"网站部署","value":1},{"name":"hexo","value":1}],
+                data: [{"name":"Web前端","value":3},{"name":"博客","value":1},{"name":"Linux","value":1},{"name":"开发工具","value":1},{"name":"网站部署","value":1},{"name":"hexo","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -615,7 +615,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Linux","Vue","Javascript","Ftp","blog","hexo","vs code","nginx"]
+                data: ["Linux","Vue","Javascript","blog","hexo","Ftp","vs code","nginx"]
             }
         ],
         yAxis: [
