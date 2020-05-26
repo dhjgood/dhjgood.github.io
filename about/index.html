@@ -324,36 +324,30 @@
 
 
 <script>
-    // var m = new Date().getDay()
-   function  randomNum(num){
-       if(localStorage.getItem('randomNum')){
-           var n =  Math.floor(Math.random()*num)
-         if(localStorage.randomNum == n ){
-             if(n==num){
-                localStorage.randomNum =   Math.floor(Math.random()*num--) 
-                return localStorage.randomNum
-             }else{
-                localStorage.randomNum =   Math.floor(Math.random()*num++)
-                return localStorage.randomNum
-             }
-            
-         }else{
-            localStorage.randomNum = n
-            return localStorage.randomNum
-         }
-       }else{
-         localStorage.randomNum  =  Math.floor(Math.random()*num)
-         return localStorage.randomNum
-       }
-
-   }
-    // console.log(random(4))
-    // Math.floor(Math.random()*4)
-    // new Date().getDay()
-    // 每天切换 banner 图.  Switch banner image every day.
-        // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/2.jpg)');
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+randomNum(8)+'.jpg)'); 
-    </script>
+var index = 0          
+function  randomNum(num){
+    if(localStorage.getItem('RandomArr')){
+        var j = localStorage.getItem('RandomArr').split(',')
+        var k =  Math.floor((Math.random()*j.length))
+        index  = j[k]
+        j.splice(k,1)
+        localStorage.RandomArr = j 
+        return k
+    }else{
+        localStorage.RandomArr  =  JSON.stringify( [0,1,2,3,4,5,6,7,8]) 
+        var r =  JSON.parse( localStorage.getItem('RandomArr'))
+        var i = Math.floor((Math.random()*r.length))
+        index  = r[i]
+        r.splice(i,1)
+        localStorage.RandomArr = r 
+        return i
+        // console.log()
+        // Math.floor(Math.random()*num)
+    }
+}
+randomNum()
+$('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+ index +'.jpg)'); 
+</script>
 
 
     </div>
@@ -590,7 +584,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Web前端","value":4},{"name":"Linux","value":1},{"name":"网站部署","value":1},{"name":"开发工具","value":1},{"name":"博客","value":1},{"name":"hexo","value":1}],
+                data: [{"name":"Web前端","value":4},{"name":"Linux","value":1},{"name":"博客","value":1},{"name":"网站部署","value":1},{"name":"开发工具","value":1},{"name":"hexo","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -614,7 +608,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Javascript","Vue","Linux","Ftp","nginx","vs code","blog","hexo"]
+                data: ["Javascript","Vue","Linux","Ftp","blog","hexo","nginx","vs code"]
             }
         ],
         yAxis: [

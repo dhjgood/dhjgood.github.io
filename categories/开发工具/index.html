@@ -317,36 +317,30 @@
 
 
 <script>
-    // var m = new Date().getDay()
-   function  randomNum(num){
-       if(localStorage.getItem('randomNum')){
-           var n =  Math.floor(Math.random()*num)
-         if(localStorage.randomNum == n ){
-             if(n==num){
-                localStorage.randomNum =   Math.floor(Math.random()*num--) 
-                return localStorage.randomNum
-             }else{
-                localStorage.randomNum =   Math.floor(Math.random()*num++)
-                return localStorage.randomNum
-             }
-            
-         }else{
-            localStorage.randomNum = n
-            return localStorage.randomNum
-         }
-       }else{
-         localStorage.randomNum  =  Math.floor(Math.random()*num)
-         return localStorage.randomNum
-       }
-
-   }
-    // console.log(random(4))
-    // Math.floor(Math.random()*4)
-    // new Date().getDay()
-    // 每天切换 banner 图.  Switch banner image every day.
-        // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/2.jpg)');
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+randomNum(8)+'.jpg)'); 
-    </script>
+var index = 0          
+function  randomNum(num){
+    if(localStorage.getItem('RandomArr')){
+        var j = localStorage.getItem('RandomArr').split(',')
+        var k =  Math.floor((Math.random()*j.length))
+        index  = j[k]
+        j.splice(k,1)
+        localStorage.RandomArr = j 
+        return k
+    }else{
+        localStorage.RandomArr  =  JSON.stringify( [0,1,2,3,4,5,6,7,8]) 
+        var r =  JSON.parse( localStorage.getItem('RandomArr'))
+        var i = Math.floor((Math.random()*r.length))
+        index  = r[i]
+        r.splice(i,1)
+        localStorage.RandomArr = r 
+        return i
+        // console.log()
+        // Math.floor(Math.random()*num)
+    }
+}
+randomNum()
+$('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+ index +'.jpg)'); 
+</script>
 
 
     </div>
@@ -384,10 +378,19 @@
                 </a>
                 
                 
+                <a href="/categories/%E5%8D%9A%E5%AE%A2/" title="博客: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D5F5E3;">博客
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2/" title="网站部署: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">网站部署
+                            style="background-color: #E8F8F5;">网站部署
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -396,16 +399,7 @@
                 <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" title="开发工具: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">开发工具
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E5%8D%9A%E5%AE%A2/" title="博客: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">博客
+                            style="background-color: #FEF9E7;">开发工具
                         <span class="tag-length">1</span>
                     </span>
                 </a>

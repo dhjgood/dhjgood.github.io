@@ -317,36 +317,30 @@
 
 
 <script>
-    // var m = new Date().getDay()
-   function  randomNum(num){
-       if(localStorage.getItem('randomNum')){
-           var n =  Math.floor(Math.random()*num)
-         if(localStorage.randomNum == n ){
-             if(n==num){
-                localStorage.randomNum =   Math.floor(Math.random()*num--) 
-                return localStorage.randomNum
-             }else{
-                localStorage.randomNum =   Math.floor(Math.random()*num++)
-                return localStorage.randomNum
-             }
-            
-         }else{
-            localStorage.randomNum = n
-            return localStorage.randomNum
-         }
-       }else{
-         localStorage.randomNum  =  Math.floor(Math.random()*num)
-         return localStorage.randomNum
-       }
-
-   }
-    // console.log(random(4))
-    // Math.floor(Math.random()*4)
-    // new Date().getDay()
-    // 每天切换 banner 图.  Switch banner image every day.
-        // $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/2.jpg)');
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+randomNum(8)+'.jpg)'); 
-    </script>
+var index = 0          
+function  randomNum(num){
+    if(localStorage.getItem('RandomArr')){
+        var j = localStorage.getItem('RandomArr').split(',')
+        var k =  Math.floor((Math.random()*j.length))
+        index  = j[k]
+        j.splice(k,1)
+        localStorage.RandomArr = j 
+        return k
+    }else{
+        localStorage.RandomArr  =  JSON.stringify( [0,1,2,3,4,5,6,7,8]) 
+        var r =  JSON.parse( localStorage.getItem('RandomArr'))
+        var i = Math.floor((Math.random()*r.length))
+        index  = r[i]
+        r.splice(i,1)
+        localStorage.RandomArr = r 
+        return i
+        // console.log()
+        // Math.floor(Math.random()*num)
+    }
+}
+randomNum()
+$('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+ index +'.jpg)'); 
+</script>
 
 
     </div>
@@ -401,28 +395,10 @@
                 </a>
                 
                 
-                <a href="/tags/nginx/" title="nginx: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="nginx" style="background-color: #FEF9E7;">nginx
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vs-code/" title="vs code: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vs code" style="background-color: #F8F9F9;">vs code
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/blog/" title="blog: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            data-tagname="blog" style="background-color: #82E0AA;">blog
+                            data-tagname="blog" style="background-color: #FEF9E7;">blog
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -431,7 +407,25 @@
                 <a href="/tags/hexo/" title="hexo: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="hexo" style="background-color: #D7BDE2;">hexo
+                            data-tagname="hexo" style="background-color: #F8F9F9;">hexo
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/nginx/" title="nginx: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="nginx" style="background-color: #82E0AA;">nginx
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/vs-code/" title="vs code: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="vs code" style="background-color: #D7BDE2;">vs code
                         <span class="tag-length">1</span>
                     </span>
                 </a>
