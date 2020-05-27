@@ -17,17 +17,17 @@
 
 
     <title>分类: 网站部署 | Xiao&#39;Hong</title>
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/css/my.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
 
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/jquery/jquery.min.js"></script>
+    <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-dracula.css" type="text/css"></head>
 
@@ -40,7 +40,7 @@
                 <div>
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">Xiao&#39;Hong</span>
                 </div>
@@ -129,7 +129,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Xiao&#39;Hong</div>
         <div class="logo-desc">
@@ -325,6 +325,7 @@ function  randomNum(num){
         index  = j[k]
         j.splice(k,1)
         localStorage.RandomArr = j 
+        console.log(j)
         return k
     }else{
         localStorage.RandomArr  =  JSON.stringify( [0,1,2,3,4,5,6,7,8]) 
@@ -339,7 +340,7 @@ function  randomNum(num){
     }
 }
 randomNum()
-$('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/banner/'+ index +'.jpg)'); 
+$('.bg-cover').css('background-image', 'url(/medias/banner/'+ index +'.jpg)'); 
 </script>
 
 
@@ -378,19 +379,10 @@ $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/
                 </a>
                 
                 
-                <a href="/categories/%E5%8D%9A%E5%AE%A2/" title="博客: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">博客
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2/" title="网站部署: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">网站部署
+                            style="background-color: #D5F5E3;">网站部署
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -399,7 +391,16 @@ $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/
                 <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" title="开发工具: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">开发工具
+                            style="background-color: #E8F8F5;">开发工具
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E5%8D%9A%E5%AE%A2/" title="博客: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #FEF9E7;">博客
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -431,7 +432,7 @@ $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/
                         <div class="card-image tag-image">
                             
                             
-                            <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="nginx部署项目">
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="nginx部署项目">
                             
                             <span class="card-title">nginx部署项目</span>
                         </div>
@@ -539,7 +540,7 @@ $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/
             <a href="http://denghongjun.cn" target="_blank">Xiao' Hong</a>
             |&nbsp;&nbsp;
             
-                <span id="icp"><img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/icp.png" style="vertical-align: text-bottom;" />
+                <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
                     <a href="http://icp.chinaz.com/info?q=denghongjun.cn" target="_blank">蜀ICP备20013557号-1</a>
                 </span>
             
@@ -615,10 +616,10 @@ $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/dhjgood/
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/js/search.js"></script>
+<script src="/js/search.js"></script>
 <script type="text/javascript">
 $(function () {
-    searchFunc("https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/search.xml", 'searchInput', 'searchResult');
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
 });
 </script>
 
@@ -630,12 +631,12 @@ $(function () {
 </div>
 
 
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/materialize/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/aos/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/js/matery.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
     <!-- Baidu Analytics -->
 
@@ -657,7 +658,7 @@ $(function () {
 
     
     
-    <script async src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
     
 
     
@@ -696,19 +697,19 @@ $(function () {
     <script type="text/javascript" color="0,0,255"
         pointColor="0,0,255" opacity='0.7'
         zIndex="-1" count="99"
-        src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/background/canvas-nest.js"></script>
+        src="/libs/background/canvas-nest.js"></script>
     
 
     
     
     <script type="text/javascript" size="100" alpha='0.3'
-        zIndex="-1" src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/background/ribbon-refresh.min.js" async="async"></script>
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
     
 
     
 
     
-    <script src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
 <script>
