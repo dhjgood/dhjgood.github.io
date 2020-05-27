@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo+github搭建博客, Xiao&#39;Hong">
+    <meta name="keywords" content="Hexo一键部署到阿里oss, Xiao&#39;Hong">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo+github搭建博客 | Xiao&#39;Hong</title>
+    <title>Hexo一键部署到阿里oss | Xiao&#39;Hong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo+github搭建博客</h1>
+                    <h1 class="description center-align post-title">Hexo一键部署到阿里oss</h1>
                 </div>
             </div>
         </div>
@@ -422,6 +422,10 @@
                                 <span class="chip bg-color">hexo</span>
                             </a>
                         
+                            <a href="/tags/oss/">
+                                <span class="chip bg-color">oss</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -443,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-07
+                    2020-05-27
                 </div>
                 
 
@@ -457,14 +461,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    302
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -479,37 +483,63 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><p>0.注册/登录一个GitHub账户，建立一个公开的仓库并且仓库名一定要是：<code>用户名.github.io</code></p>
-<p>1.下载node并配置好环境变量（我的第一个坑就是node没有配置环境变量）安装直接一直下一步即可</p>
-<p>2.下载git配置好环境变量（如果不太了解可以看一下廖雪峰的教程）</p>
-<h2 id="二、搭建过程"><a href="#二、搭建过程" class="headerlink" title="二、搭建过程"></a>二、搭建过程</h2><h2 id="为git配置信息"><a href="#为git配置信息" class="headerlink" title="为git配置信息"></a>为git配置信息</h2><p><code>window+r</code>打开<code>cmd</code>打开终端配置git信息输入如下信息：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config -g user.name <span class="token string">"你的github用户名"</span>
+                <h2 id="一、脚本部署"><a href="#一、脚本部署" class="headerlink" title="一、脚本部署"></a>一、脚本部署</h2><p>安装依赖 ： <code>npm i ali-oss</code></p>
+<p>新建该脚本<code>（oss.js）</code>放在你hexo项目的根目录下，和<code>public</code>同级</p>
+<p>该脚本有四个参数需要自己的配置(在你的oss控制台查)：<code>access key</code>，<code>access</code> <code>secret</code>，<code>region</code>，<code>Bucket</code></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> util <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'util'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> OSS <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'ali-oss'</span><span class="token punctuation">)</span>
 
-$ <span class="token function">git</span> config -g user.emil <span class="token string">"你注册github的邮箱"</span></code></pre>
-<h2 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h2><p>在终端输入如下命令：</p>
-<p><code>ssh -keygen -t rda -C &quot;你注册github的邮箱&quot;</code><br>之后不管内容三个回车即可</p>
-<h2 id="复制密钥并且粘贴到github"><a href="#复制密钥并且粘贴到github" class="headerlink" title="复制密钥并且粘贴到github"></a>复制密钥并且粘贴到github</h2><p>上面的密钥会生成到c盘的用户文件夹里面，如果找不到就在c盘搜索i<code>d_rsa.hub</code>，然后打开把里面的内容都复制下来，登录到你的github点击右上角你头像，会出现一个下拉菜单找到<code>setting</code>，选择<code>SSH and GPG keys</code>,点击<code>new ssh key</code>，然后只需要把你复制的密钥粘贴上去即可，名字随意取。</p>
-<p>此时可以来测试一下你的密钥是否配置成功 输入如下命令：</p>
-<p><code>ssh -T git@github.com</code><br>选择yes，如果看到…successfull..那就是成功了</p>
-<h2 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h2><p>hexo是一个集成的博客框架，可以快速根据主题生成静态网页</p>
-<p>此时我们可以选择盘符新建一个空文件夹名为为blog，鼠标右键选择<code>git bach here</code> 安装hexo在里面执行如下语句：</p>
-<pre><code>$ npm i -g hexo-cil</code></pre><p>这里时间可能会久一点，因为是在外网下载，如果时间太久或者下载失败的话可以用淘宝的镜像下载 如下</p>
-<pre><code>$ npm i -g cnpm --registry=https:registry.npm.taobao.org
-$ cnpm i -g hexo-cil
-$ cnpm i hexo --save</code></pre><p>如果下载安装好了可以用hexo -v来查看如果看到版本信息就算安装成功如hexo-cil:4.1.0</p>
-<h2 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h2><pre><code>$ hexo init</code></pre><p>然后进入blog文件夹 如果你看到有source themes和_config.yml等文件夹就说明你操作成功</p>
-<h2 id="在本地服务器上查看"><a href="#在本地服务器上查看" class="headerlink" title="在本地服务器上查看"></a>在本地服务器上查看</h2><pre><code>$ hexo s</code></pre><p>接着打开浏览去器输入<code>locahost:4000</code>，就可以查看了，实际上这时候你的博客已经搭建成功了</p>
-<p>嗯快一定的话网速好一点的话（最好是在科学上网的情况下）确实是十分钟，但是后面完善特别是我这种追求主题美观（花里胡哨）的人并且喜欢魔改主题又费了老大劲了，也是踩坑无数，主题魔改可单独一篇讲。</p>
-<h2 id="三、发布文章"><a href="#三、发布文章" class="headerlink" title="三、发布文章"></a>三、发布文章</h2><p>发布一篇文章可以用命令<br>    $ hexo new  &lt;标题&gt;<br>但是强烈推荐里用Typora软件直接写拖到soruce的_posts文件夹里，这个文件夹是专门放你的博客文章的，但是只是放进去在网上还是不能看到你的文章，用命令生成网页在这之前最好先清理缓存</p>
-<pre><code>$ hexo clean
+<span class="token keyword">const</span> promisifyReaddir <span class="token operator">=</span> util<span class="token punctuation">.</span><span class="token function">promisify</span><span class="token punctuation">(</span>fs<span class="token punctuation">.</span>readdir<span class="token punctuation">)</span>
+<span class="token keyword">const</span> promisifyStat <span class="token operator">=</span> util<span class="token punctuation">.</span><span class="token function">promisify</span><span class="token punctuation">(</span>fs<span class="token punctuation">.</span>stat<span class="token punctuation">)</span>
 
-$ hexo g</code></pre><p>你可以先预览一下</p>
-<pre><code>$ hexo s</code></pre><p>和之前一样在浏览器上输入<code>locahost:4000</code>就可以看到你的文章</p>
-<p>现在只是在本地能看到想要传到网上首先你需要在之前创建的<code>blog</code>文件夹里面找到<code>_config.yml</code>这个站点配置文件</p>
-<p>打开滑倒最下面找到deploy下面的<code>type</code>后面写上git （注意type和git之间一点要有空格）</p>
-<p>然后就可以部署到github上去，输入如下命令</p>
-<pre><code> $ hexo d</code></pre><h2 id="四、主题配置"><a href="#四、主题配置" class="headerlink" title="四、主题配置"></a>四、主题配置</h2><p>你可能对默认的主题很不满意，你可以去<a href="">hexo的主题库</a>去挑选，下载的话建议直接点进github克隆主题仓库下载快一点，下载好之后将文件解压把文件发在theme这个文件夹里，然后点进根目录也就是刚才的<strong><code>blog</code></strong>文件下的站点配置文件–config.yml里找到theme  在后面修改为你刚刚下载的主题文件夹名（也要注意theme和主题名之间的空格）</p>
-<p>还有我的博客是主题目前是<code>matery</code> 想看可以点<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">这里</a></p>
+<span class="token comment" spellcheck="true">// 阿里 OSS access key 拥有对 OSS 的全部权限</span>
+<span class="token keyword">const</span> ALIOSSKEY <span class="token operator">=</span> <span class="token punctuation">{</span>
+    key<span class="token punctuation">:</span> <span class="token string">'*****************'</span><span class="token punctuation">,</span>
+    secret<span class="token punctuation">:</span> <span class="token string">'*****************'</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OSS</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 请填写你的 Bucket 对应的 region</span>
+    region<span class="token punctuation">:</span> <span class="token string">'oss-cn-shanghai'</span><span class="token punctuation">,</span>
+    accessKeyId<span class="token punctuation">:</span> ALIOSSKEY<span class="token punctuation">.</span>key<span class="token punctuation">,</span>
+    accessKeySecret<span class="token punctuation">:</span> ALIOSSKEY<span class="token punctuation">.</span>secret<span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">// 请填写对应的 Bucket 名字</span>
+    bucket<span class="token punctuation">:</span> <span class="token string">'MewBucket'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> publicPath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./public'</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">run</span><span class="token punctuation">(</span>proPath <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> dir <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">promisifyReaddir</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>publicPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dir<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> stat <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">promisifyStat</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>publicPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> dir<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> fileStream <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">createReadStream</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>publicPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> dir<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`上传文件: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>dir<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+            <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">putStream</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>dir<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> fileStream<span class="token punctuation">)</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">await</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>proPath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>dir<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>然后修改根目录下的package.json文件<br>找到”scripts”: { ··· }这一行<br>增加一个指令：”oss”: “node ./oss.js” ,就像下面这样</p>
+<pre class=" language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"hexo generate"</span><span class="token punctuation">,</span>
+    <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"hexo clean"</span><span class="token punctuation">,</span>
+    <span class="token property">"doss"</span><span class="token operator">:</span> <span class="token string">"node ./oss.js"</span><span class="token punctuation">,</span>
+    <span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"hexo deploy"</span><span class="token punctuation">,</span>
+    <span class="token property">"server"</span><span class="token operator">:</span> <span class="token string">"hexo server"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>然后直接运行 <code>node oss</code> 就能直接把<code>public</code>下所有文件上传到你的<code>bucket</code>啦</p>
 
             </div>
             <hr/>
@@ -535,7 +565,7 @@ $ hexo g</code></pre><p>你可以先预览一下</p>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://denghongjun.cn/2020/050759243.html">https://denghongjun.cn/2020/050759243.html</a>
+                    <a href="https://denghongjun.cn/2020/052740970.html">https://denghongjun.cn/2020/052740970.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,6 +605,10 @@ $ hexo g</code></pre><p>你可以先预览一下</p>
                             
                                 <a href="/tags/hexo/">
                                     <span class="chip bg-color">hexo</span>
+                                </a>
+                            
+                                <a href="/tags/oss/">
+                                    <span class="chip bg-color">oss</span>
                                 </a>
                             
                         </div>
@@ -771,34 +805,32 @@ $ hexo g</code></pre><p>你可以先预览一下</p>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/050942639.html">
+                <a href="/2020/052746529.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Linux服务器环境搭建ftp">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Javascript常用工具">
                         
-                        <span class="card-title">Linux服务器环境搭建ftp</span>
+                        <span class="card-title">Javascript常用工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            搭建 linux 服务器环境搭建ftp登陆远程 linux 服务器 ssh root@ip地址
-使用yum安装vsftpd$ yum install -y vsftpd
-安装后,启动FTP服务：$ service vsftpd start
-
+                            1.邮箱export const isEmail = (s) => {
+    return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-27
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    Web前端
                                 </a>
                             
                             
@@ -808,12 +840,12 @@ $ hexo g</code></pre><p>你可以先预览一下</p>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Javascript/">
+                        <span class="chip bg-color">Javascript</span>
                     </a>
                     
-                    <a href="/tags/Ftp/">
-                        <span class="chip bg-color">Ftp</span>
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
@@ -824,48 +856,52 @@ $ hexo g</code></pre><p>你可以先预览一下</p>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/050759243.html">
+                <a href="/2020/051540520.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="hexo+github搭建博客">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Vue组件 路由动态">
                         
-                        <span class="card-title">hexo+github搭建博客</span>
+                        <span class="card-title">Vue组件 路由动态</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一、准备工作0.注册/登录一个GitHub账户，建立一个公开的仓库并且仓库名一定要是：用户名.github.io
-1.下载node并配置好环境变量（我的第一个坑就是node没有配置环境变量）安装直接一直下一步即可
-2.下载git配置好环境变
+                            1 -「全局组件注册」组件是我们非常常用的东西，很多人使用组件都是通过一个一个文件去引用和注册。如果一个组件在整个项目里面的使用次数较多，每一次使用都需要引用并注册，就会显得特别麻烦
+
+一般组件应用弊端
+
+傻瓜式，太笨拙
+
+繁琐，低效
+&l
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/hexo/" class="post-category">
-                                    hexo
+                            <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    Web前端
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
