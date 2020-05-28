@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo一键部署到阿里oss, Xiao&#39;Hong">
+    <meta name="keywords" content="hexo部署到阿里oss, Xiao&#39;Hong">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo一键部署到阿里oss | Xiao&#39;Hong</title>
+    <title>hexo部署到阿里oss | Xiao&#39;Hong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo一键部署到阿里oss</h1>
+                    <h1 class="description center-align post-title">hexo部署到阿里oss</h1>
                 </div>
             </div>
         </div>
@@ -454,14 +454,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-27
+                    2020-05-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    302
+                    419
                 </div>
                 
 
@@ -535,11 +535,22 @@
 <pre class=" language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"hexo generate"</span><span class="token punctuation">,</span>
     <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"hexo clean"</span><span class="token punctuation">,</span>
-    <span class="token property">"doss"</span><span class="token operator">:</span> <span class="token string">"node ./oss.js"</span><span class="token punctuation">,</span>
+    <span class="token property">"oss"</span><span class="token operator">:</span> <span class="token string">"node ./oss.js"</span><span class="token punctuation">,</span>
     <span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"hexo deploy"</span><span class="token punctuation">,</span>
     <span class="token property">"server"</span><span class="token operator">:</span> <span class="token string">"hexo server"</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
 <p>然后直接运行 <code>node oss</code> 就能直接把<code>public</code>下所有文件上传到你的<code>bucket</code>啦</p>
+<h2 id="二、插件部署"><a href="#二、插件部署" class="headerlink" title="二、插件部署"></a>二、插件部署</h2><p>在您的hexo项目目录下执行：</p>
+<pre class=" language-bash"><code class="language-bash">hexo-deployer-ali-oss</code></pre>
+<p>在hexo项目配置文件_config.yml中添加如下部署配置：</p>
+<pre class=" language-yml"><code class="language-yml">deploy:
+  type: ali-oss
+  region: <您的oss 区域代码>
+  accessKeyId: <您的oss  accessKeyId>
+  accessKeySecret: <您的oss accessKeySecret>
+  bucket: <您的bucket name></code></pre>
+<p>就这么简单 然后执行 <code>hexo d</code></p>
+<p>即可将项目部署到oss中 ，默认情况下，将文件上传到bucket的根目录下，如果需要部署到其他目录，请在deploy下添加remotePath选项进行指定 <code>remotePath:&lt;您要部署的目录&gt;</code></p>
 
             </div>
             <hr/>
@@ -1143,7 +1154,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.4k</span>&nbsp;字
+                class="white-color">8.5k</span>&nbsp;字
             
             
             
