@@ -2462,7 +2462,7 @@ blockquote footer cite:before {
 #page-header .menus_items .menus_item {
   position: relative;
   display: inline-block;
-  padding: 0 1rem 0 0.7rem;
+  padding: 0 0 0 0.7rem;
 }
 #page-header .menus_items .menus_item:hover .menus_item_child {
   display: block;
