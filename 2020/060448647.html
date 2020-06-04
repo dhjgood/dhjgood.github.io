@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue基础知识, Xiao&#39;Hong ,小红博客">
+    <meta name="keywords" content="Javascrip常用对象API, Xiao&#39;Hong ,小红博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue基础知识 | Xiao&#39;Hong</title>
+    <title>Javascrip常用对象API | Xiao&#39;Hong</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue基础知识</h1>
+                    <h1 class="description center-align post-title">Javascrip常用对象API</h1>
                 </div>
             </div>
         </div>
@@ -440,8 +440,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Vue/">
-                                <span class="chip bg-color">Vue</span>
+                            <a href="/tags/Javascript/">
+                                <span class="chip bg-color">Javascript</span>
                             </a>
                         
                     </div>
@@ -465,28 +465,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-10
+                    2020-06-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-29
+                    2020-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    439
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    2 分
                 </div>
                 
 
@@ -501,31 +501,71 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-vue的虚拟dom？"><a href="#1-vue的虚拟dom？" class="headerlink" title="1.vue的虚拟dom？"></a>1.vue的虚拟dom？</h4><p>虚拟的DOM的核心思想是：对复杂的文档<code>DOM</code>结构，提供一种方便的工具，进行最小化地<code>DOM</code>操作。</p>
-<h4 id="2-如何理解vue中MVVM模式？"><a href="#2-如何理解vue中MVVM模式？" class="headerlink" title="2.如何理解vue中MVVM模式？"></a>2.如何理解vue中MVVM模式？</h4><p><code>MVVM</code>全称是<code>Model-View-ViewModel</code>；vue是以数据为驱动的，一旦创建dom和数据就保持同步，<br>每当数据发生变化时，dom也会变化。<code>DOMListeners</code>和<code>DataBindings</code>是实现双向绑定的关键。<br><code>DOMListeners</code>监听页面所有<code>View</code>层<code>DOM</code>元素的变化，当发生变化，<code>Model</code>层的数据随之变化；<br><code>DataBindings</code>监听<code>Model</code>层的数据，当数据发生变化，<code>View</code>层的<code>DOM</code>元素随之变化。</p>
-<h4 id="3-vue中-lt-keep-alive-gt-的作用？"><a href="#3-vue中-lt-keep-alive-gt-的作用？" class="headerlink" title="3.vue中&lt;keep-alive&gt;的作用？"></a>3.vue中<code>&lt;keep-alive&gt;</code>的作用？</h4><p>把切换出去的组件保留在缓存中，可以保留组件的状态或者避免重新渲染。</p>
-<h4 id="4-vue生命周期的理解？"><a href="#4-vue生命周期的理解？" class="headerlink" title="4.vue生命周期的理解？"></a>4.vue生命周期的理解？</h4><p><code>beforeCreate</code>是new Vue()之后触发的第一个钩子，在当前阶段data、methods、computed以及watch上的数据和方法都不能被访问。</p>
-<p><code>created</code>在实例创建完成后发生，当前阶段已经完成了数据观测，也就是可以使用数据，更改数据，在这里更改数据不会触发updated函数。可以做一些初始数据的获取，在当前阶段无法与Dom进行交互，如果非要想，可以通过vm.$nextTick来访问Dom。</p>
-<p><code>beforeMount</code>发生在挂载之前，在这之前template模板已导入渲染函数编译。而当前阶段虚拟Dom已经创建完成，即将开始渲染。在此时也可以对数据进行更改，不会触发updated。</p>
-<p><code>mounted</code>在挂载完成后发生，在当前阶段，真实的Dom挂载完毕，数据完成双向绑定，可以访问到Dom节点，使用$refs属性对Dom进行操作。</p>
-<p><code>beforeUpdate</code>发生在更新之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，你可以在当前阶段进行更改数据，不会造成重渲染。</p>
-<p><code>updated</code>发生在更新完成之后，当前阶段组件Dom已完成更新。要注意的是避免在此期间更改数据，因为这可能会导致无限循环的更新。</p>
-<p><code>beforeDestroy</code>发生在实例销毁之前，在当前阶段实例完全可以被使用，我们可以在这时进行善后收尾工作，比如清除计时器。</p>
-<p><code>destroyed</code>发生在实例销毁之后，这个时候只剩下了dom空壳。组件已被拆解，数据绑定被卸除，监听被移出，子实例也统统被销毁。</p>
-<h4 id="5-组件之间的传值通信？"><a href="#5-组件之间的传值通信？" class="headerlink" title="5.组件之间的传值通信？"></a>5.组件之间的传值通信？</h4><p>父组件向子组件传值：<br>1、子组件在<code>props</code>中创建一个属性，用来接收父组件传过来的值；<br>2、在父组件中注册子组件；<br>3、在子组件标签中添加子组件props中创建的属性；<br>4、把需要传给子组件的值赋给该属性<br>子组件向父组件传值：<br>1、子组件中需要以某种方式（如点击事件）的方法来触发一个自定义的事件；<br>2、将需要传的值作为<code>$emit</code>的第二个参数，该值将作为实参传给响应事件的方法；<br>3、在父组件中注册子组件并在子组件标签上绑定自定义事件的监听。</p>
-<h4 id="6-vue的优点是什么？"><a href="#6-vue的优点是什么？" class="headerlink" title="6.vue的优点是什么？"></a>6.vue的优点是什么？</h4><p>低耦合：视图（<code>View</code>）可以独立于Model变化和修改，一个<code>ViewModel</code>可以绑定到不同的”<code>View</code>“上，当<code>View</code>变化的时候<code>Model</code>可以不变，当<code>Model</code>变化的时候<code>View</code>也可以不变。<br>可重用性：你可以把一些视图逻辑放在一个<code>ViewMode</code>l里面，让很多<code>view</code>重用这段视图逻辑。<br>独立开发：开发人员可以专注于业务逻辑和数据的开发（<code>ViewModel</code>），设计人员可以专注于页面设计。<br>可测试：界面素来是比较难于测试的，而现在测试可以针对<code>ViewModel</code>来写。</p>
-<h4 id="7-v-show和v-if指令的共同点和不同点"><a href="#7-v-show和v-if指令的共同点和不同点" class="headerlink" title="7.v-show和v-if指令的共同点和不同点"></a>7.v-show和v-if指令的共同点和不同点</h4><p><code>v-show</code>指令是通过修改元素的<code>display</code>的<code>CSS</code>属性让其显示或者隐藏<br><code>v-if</code>指令是直接销毁和重建<code>DOM</code>达到让元素显示和隐藏的效果</p>
-<h4 id="8-如何让CSS只在当前组件中起作用"><a href="#8-如何让CSS只在当前组件中起作用" class="headerlink" title="8.如何让CSS只在当前组件中起作用"></a>8.如何让CSS只在当前组件中起作用</h4><p>将当前组件的 <code>&lt;style&gt;修改为&lt;style scoped&gt;</code></p>
-<h4 id="9-lt-keep-alive-gt-lt-keep-alive-gt-的作用是什么"><a href="#9-lt-keep-alive-gt-lt-keep-alive-gt-的作用是什么" class="headerlink" title="9.&lt;keep-alive&gt;&lt;/keep-alive&gt;的作用是什么?"></a>9.<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>的作用是什么?</h4><p><code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code><br>包裹动态组件时，会缓存不活动的组件实例，主要用于保留组件状态或避免重新渲染。</p>
-<h4 id="10-指令v-el的作用是什么"><a href="#10-指令v-el的作用是什么" class="headerlink" title="10.指令v-el的作用是什么?"></a>10.指令v-el的作用是什么?</h4><p>提供一个在页面上已存在的 <code>DOM</code> 元素作为 <code>Vue</code> 实例的挂载目标.可以是 <code>CSS</code> 选择器，也可以是一个 <code>HTMLElement</code> 实例</p>
-<h4 id="11-在Vue中使用插件的步骤"><a href="#11-在Vue中使用插件的步骤" class="headerlink" title="11.在Vue中使用插件的步骤"></a>11.在Vue中使用插件的步骤</h4><p>采用<code>ES6</code>的<code>import ... from ...</code>语法或<code>CommonJSd的require()</code>方法引入插件<br>使用全局方法<code>Vue.use( plugin )</code>使用插件,可以传入一个选项对象<code>Vue.use(MyPlugin, { someOption: true })</code></p>
-<h4 id="12-active-class是哪个组件的属性？"><a href="#12-active-class是哪个组件的属性？" class="headerlink" title="12.active-class是哪个组件的属性？"></a>12.active-class是哪个组件的属性？</h4><p><code>vue-router</code>模块的<code>router-link</code>组件。</p>
-<h4 id="13-怎么定义vue-router的动态路由以及如何获取传过来的动态参数？"><a href="#13-怎么定义vue-router的动态路由以及如何获取传过来的动态参数？" class="headerlink" title="13.怎么定义vue-router的动态路由以及如何获取传过来的动态参数？"></a>13.怎么定义vue-router的动态路由以及如何获取传过来的动态参数？</h4><p>在<code>router</code>目录下的<code>index.js</code>文件中，对<code>path</code>属性加上<code>/:id</code><br>使用<code>router</code>对象的<code>params.id</code></p>
-<h4 id="14-vue-router有哪几种导航钩子？"><a href="#14-vue-router有哪几种导航钩子？" class="headerlink" title="14.vue-router有哪几种导航钩子？"></a>14.vue-router有哪几种导航钩子？</h4><p>第一种：一种是全局导航钩子：<code>router.beforeEach(to,from,next)</code>，作用：跳转前进行判断拦截。<br>第二种：组件内的钩子；<br>第三种：单独路由独享组件</p>
-<h4 id="15-为什么避免-v-if-和-v-for-用在一起"><a href="#15-为什么避免-v-if-和-v-for-用在一起" class="headerlink" title="15.为什么避免 v-if 和 v-for 用在一起"></a>15.为什么避免 v-if 和 v-for 用在一起</h4><p>当 Vue 处理指令时，<code>v-for</code> 比 <code>v-if</code> 具有更高的优先级，通过<code>v-if</code> 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 <code>v-if</code> 为否的时候运算 <code>v-for</code></p>
-<h4 id="16-VNode是什么？虚拟-DOM是什么？"><a href="#16-VNode是什么？虚拟-DOM是什么？" class="headerlink" title="16.VNode是什么？虚拟 DOM是什么？"></a>16.VNode是什么？虚拟 DOM是什么？</h4><p>Vue在 页面上渲染的节点，及其子节点称为“虚拟节点 (<code>Virtual Node</code>)”，简写为“VNode”。“虚拟 DOM”是由 Vue 组件树建立起来的整个 <code>VNode</code> 树的称呼。</p>
-<h4 id="17-为什么使用key？"><a href="#17-为什么使用key？" class="headerlink" title="17.为什么使用key？"></a>17.为什么使用key？</h4><p>当有相同标签名的元素切换时，需要通过 key 特性设置唯一的值来标记以让 Vue 区分它们，否则 Vue 为了效率只会替换相同标签内部的内容。</p>
-<h4 id="18-vue-loader是什么？使用它的用途有哪些？"><a href="#18-vue-loader是什么？使用它的用途有哪些？" class="headerlink" title="18.vue-loader是什么？使用它的用途有哪些？"></a>18.vue-loader是什么？使用它的用途有哪些？</h4><p><code>vue-loader</code>是解析.vue文件的一个加载器。<br>用途：<code>j</code>s可以写<code>es6、styl</code>e样式可以<code>scss或less、template</code>可以加<code>jade</code>等</p>
+                <h4 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h4><p>遍历可枚举的属性，只包含对象本身可枚举属性，不包含原型链可枚举属性</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">"bar"</span><span class="token punctuation">,</span> baz<span class="token punctuation">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ArrayLike <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">:</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">:</span> <span class="token string">"c"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">// ['0', '1', '2']</span>
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">// ["foo","baz"]</span>
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>ArrayLike<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ['0', '1', '2']</span>
+</code></pre>
+<h4 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a>Object.values()</h4><p>遍历可枚举的属性值，只包含对象本身可枚举属性值，不包含原型链可枚举属性值</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">"bar"</span><span class="token punctuation">,</span> baz<span class="token punctuation">:</span> <span class="token number">42</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ArrayLike <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">:</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">:</span> <span class="token string">"c"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">// ["a", "b", "c"]</span>
+Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>          <span class="token comment" spellcheck="true">// ["bar",42]</span>
+Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span>ArrayLike<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// ["a", "b", "c"]</span></code></pre>
+<h4 id="assign-Object-assign-target-source-source1"><a href="#assign-Object-assign-target-source-source1" class="headerlink" title="assign Object.assign( target, source, source1 )"></a>assign Object.assign( target, source, source1 )</h4><p>方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。拷贝的属性是有限制的，只拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性（enumerable: false）</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> source1 <span class="token operator">=</span> <span class="token punctuation">{</span> b<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> c<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> source2 <span class="token operator">=</span> <span class="token punctuation">{</span> c<span class="token punctuation">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> source1<span class="token punctuation">,</span> source2<span class="token punctuation">)</span><span class="token punctuation">;</span> target <span class="token comment" spellcheck="true">// {a:1, b:2, c:3}</span>
+
+
+特殊情况：
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> undefined<span class="token punctuation">)</span> <span class="token operator">===</span> obj  <span class="token comment" spellcheck="true">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">===</span> obj       <span class="token comment" spellcheck="true">// true</span>
+
+Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">// [4, 5, 3]</span>
+
+Object<span class="token punctuation">.</span>assign方法实行的是浅拷贝，而不是深拷贝。
+
+<span class="token keyword">const</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token punctuation">:</span> <span class="token punctuation">{</span>b<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj2 <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+obj1<span class="token punctuation">.</span>a<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token punctuation">.</span>a<span class="token punctuation">.</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//2</span>
+obj2<span class="token punctuation">.</span>a<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>a<span class="token punctuation">.</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//3</span></code></pre>
+<h4 id="Object-entries"><a href="#Object-entries" class="headerlink" title="Object.entries()"></a>Object.entries()</h4><p>分割对象</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span> baz<span class="token punctuation">:</span> <span class="token number">42</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [ ['foo', 'bar'], ['baz', 42] ]</span>
+
+<span class="token comment" spellcheck="true">// array like object</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]</span>
+
+<span class="token comment" spellcheck="true">//  string</span>
+Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token string">'abc'</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// [['0', 'a'], ['1', 'b'], ['2', 'c']]</span>
+
+Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// []</span></code></pre>
+<h4 id="Object-is"><a href="#Object-is" class="headerlink" title="Object.is()"></a>Object.is()</h4><p>它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致</p>
+<pre class=" language-js"><code class="language-js">Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">// true</span>
+
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>           <span class="token comment" spellcheck="true">// false</span>
+
+不同于 <span class="token operator">===</span> 之处
+<span class="token operator">+</span><span class="token number">0</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">0</span>                   <span class="token comment" spellcheck="true">//true</span>
+<span class="token number">NaN</span> <span class="token operator">===</span> <span class="token number">NaN</span>                     <span class="token comment" spellcheck="true">// false</span>
+
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span>           <span class="token comment" spellcheck="true">// false</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">,</span> <span class="token number">NaN</span><span class="token punctuation">)</span>         <span class="token comment" spellcheck="true">// true</span></code></pre>
 
             </div>
             <hr/>
@@ -551,7 +591,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://denghongjun.cn/2020/05105171.html">https://denghongjun.cn/2020/05105171.html</a>
+                    <a href="https://denghongjun.cn/2020/060448647.html">https://denghongjun.cn/2020/060448647.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,8 +629,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Vue/">
-                                    <span class="chip bg-color">Vue</span>
+                                <a href="/tags/Javascript/">
+                                    <span class="chip bg-color">Javascript</span>
                                 </a>
                             
                         </div>
@@ -783,56 +823,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05113800.html">
+                <a href="/2020/060448647.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/featureimages/2.jpg" class="responsive-img" alt="vs code 前端插件">
+                        <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/featureimages/3.jpg" class="responsive-img" alt="Javascrip常用对象API">
                         
-                        <span class="card-title">vs code 前端插件</span>
+                        <span class="card-title">Javascrip常用对象API</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Document This
-Bracket Pair Colorizer
-
-
-
-HTML Snippets
-
-Auto Close Tag
-Path Intellisense
-Auto Rename Tag
-
+                            Object.keys()遍历可枚举的属性，只包含对象本身可枚举属性，不包含原型链可枚举属性
+let arr = ["a", "b", "c"];
+let obj = { foo: "bar", baz: 10 };
+let ArrayLi
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="post-category">
-                                    开发工具
+                            <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    Web前端
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vs-code/">
-                        <span class="chip bg-color">vs code</span>
+                    <a href="/tags/Javascript/">
+                        <span class="chip bg-color">Javascript</span>
                     </a>
                     
                 </div>
@@ -846,34 +881,32 @@ Auto Rename Tag
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/050942639.html">
+                <a href="/2020/052746529.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="Linux服务器环境搭建ftp">
+                        <img src="https://cdn.jsdelivr.net/gh/dhjgood/dhjgood.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="Javascript常用工具">
                         
-                        <span class="card-title">Linux服务器环境搭建ftp</span>
+                        <span class="card-title">Javascript常用工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            搭建 linux 服务器环境搭建ftp登陆远程 linux 服务器 ssh root@ip地址
-使用yum安装vsftpd$ yum install -y vsftpd
-安装后,启动FTP服务：$ service vsftpd start
-
+                            1.邮箱export const isEmail = (s) => {
+    return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    Web前端
                                 </a>
                             
                             
@@ -883,12 +916,12 @@ Auto Rename Tag
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Javascript/">
+                        <span class="chip bg-color">Javascript</span>
                     </a>
                     
-                    <a href="/tags/Ftp/">
-                        <span class="chip bg-color">Ftp</span>
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
